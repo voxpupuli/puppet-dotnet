@@ -8,8 +8,8 @@ Status](https://secure.travis-ci.org/liamjbennett/puppet-dotnet.png)](http://tra
 Status](https://gemnasium.com/liamjbennett/puppet-dotnet.png)](http://gemnasium.com/liamjbennett/puppet-dotnet)
 
 ## Configuration ##
-The dotnet class has some defaults that can be overridden using hiera:
+The dotnet class has some defaults that can be overridden, for instance if you wanted a specific version of .NET
 
-**```version```** - The version of the .NET framework to be managed [3.5|4|4.5]   
-**```ensure```**  - The state of the framework on the machine [present|absent]   
-**```windows_deployment_root```** - A defined network location with which the binaries are stored.   
+	class { 'dotnet': version => '3.5' }
+
+It is also important to note that you must specifify the ```deployment_root``` which is a network share where the binaries are stored. This can either be set as a parameter or in your hiera configuration.
