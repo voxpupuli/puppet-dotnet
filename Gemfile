@@ -9,5 +9,6 @@ end
 gem "rake"
 gem "puppet", puppetversion
 gem "puppet-lint"
-gem "rspec-puppet"
+gem "hiera"
+gem "hiera-puppet-helper"
 gem "puppetlabs_spec_helper"
