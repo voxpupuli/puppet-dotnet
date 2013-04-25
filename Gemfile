@@ -10,5 +10,6 @@ gem "rake"
 gem "puppet", puppetversion
 gem "puppet-lint"
 gem "hiera"
+gem "hiera-puppet"
 gem "hiera-puppet-helper"
 gem "puppetlabs_spec_helper"
