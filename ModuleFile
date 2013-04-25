@@ -1,4 +1,4 @@
-name          'puppet-dotnet'
+name          'liamjbennett-dotnet'
 version       '0.0.1'
 author        'liamjbennett'
 license       'Apache License, Version 2.0'
