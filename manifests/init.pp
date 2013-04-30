@@ -1,32 +1,16 @@
-# Class dotnet
+# Define dotnet
 #
-# This class installs the Microsoft .NET framework on windows
+# This definition installs the Microsoft .NET framework on windows
 #
-class dotnet(
-  $deployment_root = 'UNSET',
-  $version = 'UNSET',
-  $ensure  = 'UNSET',
+define dotnet(
+  $version,
+  $ensure  = 'present',
 ) {
-  
+
   include dotnet::params
   
-  $fixed_deployment_root = $deployment_root ? {
-      'UNSET' => $dotnet::params::deployment_root,
-      default => $deployment_root
-  }
-  
-  $fixed_version = $version ? {
-      'UNSET' => $dotnet::params::version,
-      default => $version
-  }
-  
-  $fixed_ensure = $ensure ? {
-      'UNSET' => $dotnet::params::ensure,
-      default => $ensure
-  }
-
-  if $fixed_ensure == 'present' {
-    case $fixed_version {
+  if $ensure == 'present' {
+    case $version {
       '3.5': {
         case $::operatingsystemversion {
           'Windows Server 2008','Windows Server 2008 R2','Windows Server 2012': {
@@ -39,7 +23,7 @@ class dotnet(
           }
           'Windows XP','Windows Vista','Windows 7','Windows 8': {
             exec { 'install-dotnet-35':
-              command   => "& ${fixed_deployment_root}\\dotNet\\dotNetFx35setup.exe /q /norestart",
+              command   => "& ${dotnet::params::deployment_root}\\dotNet\\dotNetFx35setup.exe /q /norestart",
               provider  => powershell,
               logoutput => true,
               unless    => "if ((Get-Item -LiteralPath \'${dotnet::params::t_reg_key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 0 }"
@@ -54,7 +38,7 @@ class dotnet(
         case $::operatingsystemversion {
           'Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows XP','Windows Vista','Windows 7','Windows 8': {
             exec { 'install-dotnet-4':
-              command   => "& ${fixed_deployment_root}\\dotNet\\dotNetFx40_Full_x86_x64.exe /q /norestart",
+              command   => "& ${dotnet::params::deployment_root}\\dotNet\\dotNetFx40_Full_x86_x64.exe /q /norestart",
               provider  => powershell,
               logoutput => true,
               unless    => "if ((Get-Item -LiteralPath \'${dotnet::params::f_reg_key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 0 }"
@@ -69,7 +53,7 @@ class dotnet(
         case $::operatingsystemversion {
           'Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows Vista','Windows 7','Windows 8': {
             exec { 'install-dotnet-45':
-              command   => "& ${fixed_deployment_root}\\dotNet\\dotnetfx45_full_x86_x64.exe /q /norestart",
+              command   => "& ${dotnet::params::deployment_root}\\dotNet\\dotnetfx45_full_x86_x64.exe /q /norestart",
               provider  => powershell,
               logoutput => true,
               unless    => "if ((Get-Item -LiteralPath \'${dotnet::params::ff_reg_key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 0 }"
@@ -81,12 +65,12 @@ class dotnet(
         }
       }
       default: {
-        err("dotnet does not have a version: ${fixed_version}")
+        err("dotnet does not have a version: ${version}")
       }
     }
   }
-  elsif $fixed_ensure == 'absent' {
-    case $fixed_version {
+  elsif $ensure == 'absent' {
+    case $version {
       '3.5': {
         case $::operatingsystemversion {
           'Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012': {
@@ -99,7 +83,7 @@ class dotnet(
           }
           'Windows XP','Windows Vista','Windows 7','Windows 8': {
             exec { 'uninstall-dotnet-35':
-              command   => "& ${fixed_deployment_root}\\dotNet\\dotNetFx35setup.exe /x /q /norestart",
+              command   => "& ${dotnet::params::deployment_root}\\dotNet\\dotNetFx35setup.exe /x /q /norestart",
               provider  => powershell,
               logoutput => true,
               unless    => "if ((Get-Item -LiteralPath \'${dotnet::params::t_reg_key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 1 }"
@@ -114,7 +98,7 @@ class dotnet(
         case $::operatingsystemversion {
           'Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows XP','Windows Vista','Windows 7','Windows 8': {
             exec { 'uninstall-dotnet-4':
-              command   => "& ${fixed_deployment_root}\\dotNet\\dotNetFx40_Full_x86_x64.exe /x /q /norestart",
+              command   => "& ${dotnet::params::deployment_root}\\dotNet\\dotNetFx40_Full_x86_x64.exe /x /q /norestart",
               provider  => powershell,
               logoutput => true,
               unless    => "if ((Get-Item -LiteralPath \'${dotnet::params::f_reg_key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 1 }"
@@ -129,7 +113,7 @@ class dotnet(
         case $::operatingsystemversion {
           'Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows Vista','Windows 7','Windows 8': {
             exec { 'uninstall-dotnet-45':
-              command   => "& ${fixed_deployment_root}\\dotNet\\dotnetfx45_full_x86_x64.exe /x /q /norestart",
+              command   => "& ${dotnet::params::deployment_root}\\dotNet\\dotnetfx45_full_x86_x64.exe /x /q /norestart",
               provider  => powershell,
               logoutput => true,
               unless    => "if ((Get-Item -LiteralPath \'${dotnet::params::ff_reg_key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 1 }"
@@ -143,6 +127,6 @@ class dotnet(
     }
   }
   else {
-    err("do not understand ensure: ${fixed_ensure}")
+    err("do not understand ensure: ${ensure}")
   }
 }   

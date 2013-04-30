@@ -2,8 +2,6 @@
 class dotnet::params {
     
     $deployment_root = hiera('windows_deployment_root')
-    $version = hiera('dotnet_version','4')
-    $ensure = hiera('dotnet_ensure','present')
     
     $ps_command = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -executionpolicy remotesigned -Command'
     

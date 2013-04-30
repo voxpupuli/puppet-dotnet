@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'dotnet', :type => :class do
+describe 'dotnet', :type => :define do
   
   before { 
     @powershell_command = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -executionpolicy remotesigned -Command'
@@ -22,6 +22,7 @@ describe 'dotnet', :type => :class do
   
   ['Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012'].each do |os|
     context "with ensure => present, version => 3.5, os => #{os}, server feature" do    
+      let :title do 'dotnet35' end
       let :params do
         { :ensure => 'present', :version => '3.5'}
       end      
@@ -37,9 +38,10 @@ describe 'dotnet', :type => :class do
       )}
     end
   end
-   
+
   ['unknown','Windows Server 2003', 'Windows Server 2003 R2'].each do |os|
     context "with ensure => present, version => 3.5, os => #{os}, server feature" do
+      let :title do 'dotnet35' end
       let :params do
         { :ensure => 'present', :version => '3.5' }
       end
@@ -53,6 +55,7 @@ describe 'dotnet', :type => :class do
 
   ['Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012'].each do |os|
     context "with ensure => absent, version => 3.5, os => #{os}, server feature" do
+      let :title do 'dotnet35' end
       let :params do
         { :ensure => 'absent', :version => '3.5' }
       end
@@ -71,6 +74,7 @@ describe 'dotnet', :type => :class do
 
   ['Windows XP', 'Windows Vista', 'Windows 7','Windows 8'].each do |os|
     context "with ensure => present, version => 3.5, os => #{os}" do
+      let :title do 'dotnet35' end
       let :params do
         { :ensure => 'present', :version => '3.5' }
       end
@@ -89,6 +93,7 @@ describe 'dotnet', :type => :class do
  
   ['unknown'].each do |os|
     context "with ensure => present, version => 3.5, os => #{os}" do
+      let :title do 'dotnet35' end
       let :params do
         { :ensure => 'present', :version => '3.5' }
       end
@@ -102,6 +107,7 @@ describe 'dotnet', :type => :class do
  
   ['Windows XP', 'Windows Vista', 'Windows 7','Windows 8'].each do |os|
     context "with ensure => absent, version => 3.5, os => #{os}" do
+      let :title do 'dotnet35' end
       let :params do
         { :ensure => 'absent', :version => '3.5' }
       end
@@ -120,6 +126,7 @@ describe 'dotnet', :type => :class do
 
   ['unknown'].each do |os|
     context "with ensure => absent, version => 3.5, os => #{os}" do
+      let :title do 'dotnet35' end
       let :params do
         { :ensure => 'absent', :version => '3.5' }
       end
@@ -133,6 +140,7 @@ describe 'dotnet', :type => :class do
 
   ['Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows XP','Windows Vista','Windows 7','Windows 8'].each do |os|
     context "with ensure => present, version => 4, os => #{os}" do
+      let :title do 'dotnet4' end
       let :params do
         { :ensure => 'present', :version => '4' }
       end
@@ -152,6 +160,7 @@ describe 'dotnet', :type => :class do
  
   ['unknown'].each do |os|
     context "with ensure => present, version => 4, os => #{os}" do
+      let :title do 'dotnet4' end
       let :params do
         { :ensure => 'present', :version => '4' }
       end
@@ -165,6 +174,7 @@ describe 'dotnet', :type => :class do
 
   ['Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows XP','Windows Vista','Windows 7','Windows 8'].each do |os|
     context "with ensure => absent, version => 4, os => #{os}" do
+      let :title do 'dotnet4' end
       let :params do
         { :ensure => 'absent', :version => '4' }
       end
@@ -183,6 +193,7 @@ describe 'dotnet', :type => :class do
 
   ['unknown'].each do |os|
     context "with ensure => absent, version => 4, os => #{os}" do
+      let :title do 'dotnet4' end
       let :params do
         { :ensure => 'absent', :version => '4' }
       end
@@ -196,6 +207,7 @@ describe 'dotnet', :type => :class do
 
   ['Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows Vista','Windows 7','Windows 8'].each do |os|
     context "with ensure => present, version => 4.5, os => #{os}" do
+      let :title do 'dotnet45' end
       let :params do
         { :ensure => 'present', :version => '4.5' }
       end
@@ -214,6 +226,7 @@ describe 'dotnet', :type => :class do
 
   ['unknown','Windows Server 2003','Windows Server 2003 R2'].each do |os|
     context "with ensure => present, version => 4.5, os => #{os}" do
+      let :title do 'dotnet45' end
       let :params do
         { :ensure => 'present', :version => '4.5' }
       end
@@ -227,6 +240,7 @@ describe 'dotnet', :type => :class do
 
   ['Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows Vista','Windows 7','Windows 8'].each do |os|
     context 'with ensure => absent, version => 4.5' do
+      let :title do 'dotnet45' end
       let :params do
         { :ensure => 'absent', :version => '4.5' }
       end
@@ -245,6 +259,7 @@ describe 'dotnet', :type => :class do
 
   ['unknown','Windows Server 2003','Windows Server 2003 R2'].each do |os|
     context "with ensure => absent, version => 4.5, os => #{os}" do
+      let :title do 'dotnet45' end
       let :params do
         { :ensure => 'absent', :version => '4.5' }
       end
