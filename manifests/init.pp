@@ -2,10 +2,26 @@
 #
 # This definition installs the Microsoft .NET framework on windows
 #
+# Parameters:
+#   [*ensure*]          - Control the state of the .NET installation
+#   [*version*]         - The version of .NET to be managed
+#
+# Actions:
+#
+# Requires:
+#
+# Usage:
+#
+#   dotnet { 'dotnet45': 
+#     version => '4.5',
+#   }
 define dotnet(
-  $version,
   $ensure  = 'present',
+  $version = '',
 ) {
+    
+  validate_re($ensure,['^(present|absent)$'])
+  validate_re($version,['^(3.5|4|4.5)$'])
 
   include dotnet::params
   
@@ -32,7 +48,7 @@ define dotnet(
           default: {
             err('dotnet 3.5 is not support on this version of windows')
           }
-        }  
+        }
       }
       '4': {
         case $::operatingsystemversion {
@@ -125,8 +141,5 @@ define dotnet(
         }
       }
     }
-  }
-  else {
-    err("do not understand ensure: ${ensure}")
   }
 }   
