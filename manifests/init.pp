@@ -12,19 +12,19 @@
 #
 # Usage:
 #
-#   dotnet { 'dotnet45': 
+#   dotnet { 'dotnet45':
 #     version => '4.5',
 #   }
 define dotnet(
   $ensure  = 'present',
   $version = '',
 ) {
-    
+
   validate_re($ensure,['^(present|absent)$'])
   validate_re($version,['^(3.5|4|4.5)$'])
 
   include dotnet::params
-  
+
   if $ensure == 'present' {
     case $version {
       '3.5': {
@@ -103,12 +103,12 @@ define dotnet(
               provider  => powershell,
               logoutput => true,
               unless    => "if ((Get-Item -LiteralPath \'${dotnet::params::t_reg_key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 1 }"
-            }                 
+            }
           }
           default: {
             err('dotnet 3.5 is not supported on this version of windows')
           }
-        }  
+        }
       }
       '4': {
         case $::operatingsystemversion {
@@ -142,4 +142,4 @@ define dotnet(
       }
     }
   }
-}   
+}
