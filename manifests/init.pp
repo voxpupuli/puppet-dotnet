@@ -29,7 +29,8 @@ define dotnet(
     case $version {
       '3.5': {
         case $::operatingsystemversion {
-          'Windows Server 2008','Windows Server 2008 R2','Windows Server 2012': {
+          'Windows Server 2008','Windows Server 2008 R2','Windows Server 2008 R2 Standard','Windows Server 2008 R2 Enterprise',
+          'Windows Server 2008 R2 Datacenter','Windows Server 2012': {
             exec { 'install-feature-3.5':
               command   => "${dotnet::params::ps_command} Import-Module ServerManager; Add-WindowsFeature as-net-framework",
               provider  => windows,
@@ -52,7 +53,8 @@ define dotnet(
       }
       '4': {
         case $::operatingsystemversion {
-          'Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows XP','Windows Vista','Windows 7','Windows 8': {
+          'Windows Server 2008', 'Windows Server 2008 R2','Windows Server 2008 R2 Standard','Windows Server 2008 R2 Enterprise',
+          'Windows Server 2008 R2 Datacenter', 'Windows Server 2012','Windows XP','Windows Vista','Windows 7','Windows 8': {
             exec { 'install-dotnet-4':
               command   => "& ${dotnet::params::deployment_root}\\dotNet\\dotNetFx40_Full_x86_x64.exe /q /norestart",
               provider  => powershell,
@@ -67,7 +69,8 @@ define dotnet(
       }
       '4.5': {
         case $::operatingsystemversion {
-          'Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows Vista','Windows 7','Windows 8': {
+          'Windows Server 2008', 'Windows Server 2008 R2','Windows Server 2008 R2 Standard','Windows Server 2008 R2 Enterprise',
+          'Windows Server 2008 R2 Datacenter', 'Windows Server 2012','Windows Vista','Windows 7','Windows 8': {
             exec { 'install-dotnet-45':
               command   => "& ${dotnet::params::deployment_root}\\dotNet\\dotnetfx45_full_x86_x64.exe /q /norestart",
               provider  => powershell,
@@ -89,7 +92,8 @@ define dotnet(
     case $version {
       '3.5': {
         case $::operatingsystemversion {
-          'Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012': {
+          'Windows Server 2008', 'Windows Server 2008 R2','Windows Server 2008 R2 Standard','Windows Server 2008 R2 Enterprise',
+          'Windows Server 2008 R2 Datacenter', 'Windows Server 2012': {
             exec { 'uninstall-feature-3.5':
               command   => "${dotnet::params::ps_command} Import-Module ServerManager; Remove-WindowsFeature as-net-framework",
               provider  => windows,
@@ -112,7 +116,8 @@ define dotnet(
       }
       '4': {
         case $::operatingsystemversion {
-          'Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows XP','Windows Vista','Windows 7','Windows 8': {
+          'Windows Server 2008', 'Windows Server 2008 R2','Windows Server 2008 R2 Standard','Windows Server 2008 R2 Enterprise',
+          'Windows Server 2008 R2 Datacenter', 'Windows Server 2012','Windows XP','Windows Vista','Windows 7','Windows 8': {
             exec { 'uninstall-dotnet-4':
               command   => "& ${dotnet::params::deployment_root}\\dotNet\\dotNetFx40_Full_x86_x64.exe /x /q /norestart",
               provider  => powershell,
@@ -127,7 +132,8 @@ define dotnet(
       }
       '4.5': {
         case $::operatingsystemversion {
-          'Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows Vista','Windows 7','Windows 8': {
+          'Windows Server 2008', 'Windows Server 2008 R2','Windows Server 2008 R2 Standard','Windows Server 2008 R2 Enterprise',
+          'Windows Server 2008 R2 Datacenter', 'Windows Server 2012','Windows Vista','Windows 7','Windows 8': {
             exec { 'uninstall-dotnet-45':
               command   => "& ${dotnet::params::deployment_root}\\dotNet\\dotnetfx45_full_x86_x64.exe /x /q /norestart",
               provider  => powershell,
