@@ -12,19 +12,19 @@
 #
 # Usage:
 #
-#   dotnet { 'dotnet45': 
+#   dotnet { 'dotnet45':
 #     version => '4.5',
 #   }
 define dotnet(
   $ensure  = 'present',
-  $version = '',
+  $version = ''
 ) {
-    
+
   validate_re($ensure,['^(present|absent)$'])
   validate_re($version,['^(3.5|4|4.5)$'])
 
   include dotnet::params
-  
+
   if $ensure == 'present' {
     case $version {
       '3.5': {
@@ -34,7 +34,7 @@ define dotnet(
               command   => "${dotnet::params::ps_command} Import-Module ServerManager; Add-WindowsFeature as-net-framework",
               provider  => windows,
               logoutput => true,
-              unless    => "${dotnet::params::ps_command} Test-Path C:\Windows\Microsoft.NET\Framework\v3.5",
+              unless    => "${dotnet::params::ps_command} Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v3.5",
             }
           }
           'Windows XP','Windows Vista','Windows 7','Windows 8': {
@@ -94,7 +94,7 @@ define dotnet(
               command   => "${dotnet::params::ps_command} Import-Module ServerManager; Remove-WindowsFeature as-net-framework",
               provider  => windows,
               logoutput => true,
-              onlyif    => "${dotnet::params::ps_command} Test-Path C:\Windows\Microsoft.NET\Framework\v3.5",
+              onlyif    => "${dotnet::params::ps_command} Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v3.5",
             }
           }
           'Windows XP','Windows Vista','Windows 7','Windows 8': {
@@ -103,12 +103,12 @@ define dotnet(
               provider  => powershell,
               logoutput => true,
               unless    => "if ((Get-Item -LiteralPath \'${dotnet::params::t_reg_key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 1 }"
-            }                 
+            }
           }
           default: {
             err('dotnet 3.5 is not supported on this version of windows')
           }
-        }  
+        }
       }
       '4': {
         case $::operatingsystemversion {
@@ -142,4 +142,4 @@ define dotnet(
       }
     }
   }
-}   
+}
