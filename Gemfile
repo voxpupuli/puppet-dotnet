@@ -11,6 +11,12 @@ group :test do
   gem "beaker"
   gem "beaker-rspec"
 	gem "rspec", "2.99.0"
+
+  if ENV['PUPPET_VERSION'] =~ /2\.7/
+    gem "hiera"
+    gem "hiera-puppet"
+  end
+
 end
 
 group :development do
