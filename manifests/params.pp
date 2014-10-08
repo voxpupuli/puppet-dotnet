@@ -1,7 +1,15 @@
+# Author::    Liam Bennett (mailto:liamjbennett@gmail.com)
+# Copyright:: Copyright (c) 2014 Liam Bennett
+# License::   MIT
+
+# == Class dotnet::params
+#
+# This class is meant to be called from `dotnet`
+# It sets variables according to platform
 #
 class dotnet::params {
 
-    $deployment_root = hiera('windows_deployment_root', "C:\\Windows\\Temp")
+    $deployment_root = "C:\\Windows\\Temp"
 
     $ps_command = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -executionpolicy remotesigned -Command'
 

@@ -1,20 +1,32 @@
-# Define dotnet
+# Author::    Liam Bennett (mailto:liamjbennett@gmail.com)
+# Copyright:: Copyright (c) 2014 Liam Bennett
+# License::   MIT
+
+# == Define: dotnet
 #
-# This definition installs the Microsoft .NET framework on windows
+# Module to install the Microsoft .NET framework on windows
 #
-# Parameters:
-#   [*ensure*]          - Control the state of the .NET installation
-#   [*version*]         - The version of .NET to be managed
+# === Requirements/Dependencies
 #
-# Actions:
+# Currently reequires the puppetlabs/stdlib module on the Puppet Forge in
+# order to validate much of the the provided configuration.
 #
-# Requires:
+# === Parameters
 #
-# Usage:
+# [*ensure*]
+# Control the state of the .NET installation
 #
-#   dotnet { 'dotnet45':
-#     version => '4.5',
-#   }
+# [*version*]
+# The version of .NET to be managed
+#
+# === Examples
+#
+#  Installing .NET 4.5
+#
+#    dotnet { 'dotnet45':
+#      version => '4.5',
+#    }
+#
 define dotnet(
   $ensure  = 'present',
   $version = ''

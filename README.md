@@ -1,28 +1,81 @@
-Puppet module for installing and managing [Microsoft .NET framework]().
+# puppet-dotnet
 
-This module is also available on the [Puppet Forge](https://forge.puppetlabs.com/liamjbennett/dotnet)
+####Table of Contents
 
-[![Build
-Status](https://secure.travis-ci.org/liamjbennett/puppet-dotnet.png)](http://travis-ci.org/liamjbennett/puppet-dotnet)
-[![Dependency
-Status](https://gemnasium.com/liamjbennett/puppet-dotnet.png)](http://gemnasium.com/liamjbennett/puppet-dotnet)
+1. [Overview](#overview)
+2. [Module Description - What is the dotnet module?](#module-description)
+3. [Setup - The basics of getting started with dotnet](#setup)
+    * [What dotnet affects](#what-dotnet-affects)
+    * [Setup requirements](#setup-requirements)
+    * [Beginning with dotnet](#beginning-with-dotnet)
+4. [Usage - Configuration options and additional functionality](#usage)
+5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+5. [Limitations - OS compatibility, etc.](#limitations)
+6. [Development - Guide for contributing to the module](#development)
 
-## Configuration ##
-The dotnet defintion has some defaults that can be overridden, for instance if you wanted a specific version of .NET
+##Overview
 
-	dotnet { 'dotnet45': version => '3.5' }
+Puppet module for installing and managing [Microsoft .NET framework](http://www.microsoft.com/net).
 
-It is also important to note that you must specifify the ```deployment_root``` which is a network share where the binaries are stored. This can either be set as a parameter or in your hiera configuration.
+[![Build Status](https://secure.travis-ci.org/liamjbennett/puppet-dotnet.png)](http://travis-ci.org/liamjbennett/puppet-dotnet)
 
-## Requirements ##
+##Module Description
 
-Tested against puppet versions 2.7.x and 3.x.x
+This module installs and configures the Microsoft .NET framework on Windows systems. It support side-by-side installs where appropriate.
 
-These modules will also get installed as a dependency for this module:
+##Setup
 
-puppetlabs/stdlib
-joshcooper/powershell
-liamjbennett/win_facts
+###What dotnet affects
 
-Please see the ModuleFile for further details.
+* Installs the .net framework package or the windows server role.
 
+###Beginning with dotnet
+
+Installing the .net 3.5 server role on windows server:
+
+```puppet
+  dotnet { 'dotnet35': version => '3.5' }
+```
+
+Installing .net 4.5:
+
+```puppet
+  dotnet { 'dotnet45':
+    version => '4.5'
+    deployment_root => 'Z:\packages'
+  }
+```
+
+##Usage
+
+###Classes and Defined Types:
+
+####Defined Type: `dotnet`
+The dotnet module primary definition, `dotnet` install and configures the .net framework packages/roles
+
+**Parameters within `dotnet`:**
+#####`ensure`
+Ensures the state of .net on the system. Present or Absent.
+
+#####`version`
+The version of .net that you want to be managed by this definition.
+
+##Reference
+
+###Definitions
+###Public Definitions
+* [`dotnet`](#define_dotnet): Guides the basic management of the .net framework on the system.
+
+##Limitations
+
+This module is tested on the following platforms:
+
+* Windows 2008 R2
+
+It is tested with the OSS version of Puppet only.
+
+##Development
+
+###Contributing
+
+Please read CONTRIBUTING.md for full details on contributing to this project.
