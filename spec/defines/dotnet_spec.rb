@@ -3,7 +3,6 @@ require 'spec_helper'
 describe 'dotnet', :type => :define do
 
   before {
-    @powershell_command = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -executionpolicy remotesigned -Command'
     @hklm = 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall'
 
     @three_prog = 'dotNetFx35setup.exe'
@@ -29,10 +28,10 @@ describe 'dotnet', :type => :define do
       end
 
       it { should contain_exec('install-feature-3.5').with(
-        'provider'  => 'windows',
+        'provider'  => 'powershell',
         'logoutput' => 'true',
-        'command'   => "#{@powershell_command} Import-Module ServerManager; Add-WindowsFeature as-net-framework",
-        'unless'    => "#{@powershell_command} Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v3.5"
+        'command'   => "Import-Module ServerManager; Add-WindowsFeature as-net-framework",
+        'unless'    => "Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v3.5"
       )}
     end
   end
@@ -62,10 +61,10 @@ describe 'dotnet', :type => :define do
       end
 
       it { should contain_exec('uninstall-feature-3.5').with(
-        'provider'  => 'windows',
+        'provider'  => 'powershell',
         'logoutput' => 'true',
-        'command'   => "#{@powershell_command} Import-Module ServerManager; Remove-WindowsFeature as-net-framework",
-        'onlyif'    => "#{@powershell_command} Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v3.5"
+        'command'   => "Import-Module ServerManager; Remove-WindowsFeature as-net-framework",
+        'onlyif'    => "Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v3.5"
       )}
     end
   end
@@ -137,10 +136,10 @@ describe 'dotnet', :type => :define do
   end
 
   ['Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows XP','Windows Vista','Windows 7','Windows 8'].each do |os|
-    context "with ensure => present, version => 4, os => #{os}" do
+    context "with ensure => present, version => 4.0, os => #{os}" do
       let :title do 'dotnet4' end
       let :params do
-        { :ensure => 'present', :version => '4' }
+        { :ensure => 'present', :version => '4.0' }
       end
       let :facts do
         { :operatingsystemversion => os }
@@ -157,10 +156,10 @@ describe 'dotnet', :type => :define do
   end
 
   ['unknown'].each do |os|
-    context "with ensure => present, version => 4, os => #{os}" do
+    context "with ensure => present, version => 4.0, os => #{os}" do
       let :title do 'dotnet4' end
       let :params do
-        { :ensure => 'present', :version => '4' }
+        { :ensure => 'present', :version => '4.0' }
       end
       let :facts do
         { :operatingsystemversion => os }
@@ -171,10 +170,10 @@ describe 'dotnet', :type => :define do
   end
 
   ['Windows Server 2008', 'Windows Server 2008 R2', 'Windows Server 2012','Windows XP','Windows Vista','Windows 7','Windows 8'].each do |os|
-    context "with ensure => absent, version => 4, os => #{os}" do
+    context "with ensure => absent, version => 4.0, os => #{os}" do
       let :title do 'dotnet4' end
       let :params do
-        { :ensure => 'absent', :version => '4' }
+        { :ensure => 'absent', :version => '4.0' }
       end
       let :facts do
         { :operatingsystemversion => os }
@@ -190,10 +189,10 @@ describe 'dotnet', :type => :define do
   end
 
   ['unknown'].each do |os|
-    context "with ensure => absent, version => 4, os => #{os}" do
+    context "with ensure => absent, version => 4.0, os => #{os}" do
       let :title do 'dotnet4' end
       let :params do
-        { :ensure => 'absent', :version => '4' }
+        { :ensure => 'absent', :version => '4.0' }
       end
       let :facts do
         { :operatingsystemversion => os }
