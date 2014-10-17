@@ -19,6 +19,9 @@
 # [*version*]
 # The version of .NET to be managed
 #
+# [*package_dir*]
+# If installing .NET from a directory or a mounted network location then this is that directory
+#
 # === Examples
 #
 #  Installing .NET 4.5

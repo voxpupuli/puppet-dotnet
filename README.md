@@ -60,11 +60,18 @@ Ensures the state of .net on the system. Present or Absent.
 #####`version`
 The version of .net that you want to be managed by this definition.
 
+#####`package_dir`
+If installing .NET from a directory or a mounted network location then this is that directory
+
 ##Reference
 
 ###Definitions
 ###Public Definitions
 * [`dotnet`](#define_dotnet): Guides the basic management of the .net framework on the system.
+
+###Private Definitions
+* [`dotnet::install::feature`](#define-install_feature): Installs dotnet as windows feature (.net 3.5)
+* [`dotnet::install::package`](#define-install_package): Installs dotnet from a downloaded package.
 
 ##Limitations
 
