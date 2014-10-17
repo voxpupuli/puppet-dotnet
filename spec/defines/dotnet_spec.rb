@@ -73,16 +73,16 @@ describe 'dotnet', :type => :define do
     context "with ensure => present, version => 3.5, os => #{os}" do
       let :title do 'dotnet35' end
       let :params do
-        { :ensure => 'present', :version => '3.5' }
+        { :ensure => 'present', :version => '3.5', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should contain_exec('install-dotnet-35').with(
+      it { should contain_exec('install-dotnet-3.5').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
-        'command'   => "& C:\\Windows\\Temp\\dotNet\\#{@three_prog} /q /norestart",
+        'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /q /norestart",
         'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }"
       )}
     end
@@ -92,7 +92,7 @@ describe 'dotnet', :type => :define do
     context "with ensure => present, version => 3.5, os => #{os}" do
       let :title do 'dotnet35' end
       let :params do
-        { :ensure => 'present', :version => '3.5' }
+        { :ensure => 'present', :version => '3.5', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
@@ -106,16 +106,16 @@ describe 'dotnet', :type => :define do
     context "with ensure => absent, version => 3.5, os => #{os}" do
       let :title do 'dotnet35' end
       let :params do
-        { :ensure => 'absent', :version => '3.5' }
+        { :ensure => 'absent', :version => '3.5', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should contain_exec('uninstall-dotnet-35').with(
+      it { should contain_exec('uninstall-dotnet-3.5').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
-        'command'   => "& C:\\Windows\\Temp\\dotNet\\#{@three_prog} /x /q /norestart",
+        'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /x /q /norestart",
         'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }"
       )}
     end
@@ -125,13 +125,13 @@ describe 'dotnet', :type => :define do
     context "with ensure => absent, version => 3.5, os => #{os}" do
       let :title do 'dotnet35' end
       let :params do
-        { :ensure => 'absent', :version => '3.5' }
+        { :ensure => 'absent', :version => '3.5', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should_not contain_exec('uninstall-dotnet-35')}
+      it { should_not contain_exec('uninstall-dotnet-3.5')}
     end
   end
 
@@ -139,16 +139,16 @@ describe 'dotnet', :type => :define do
     context "with ensure => present, version => 4.0, os => #{os}" do
       let :title do 'dotnet4' end
       let :params do
-        { :ensure => 'present', :version => '4.0' }
+        { :ensure => 'present', :version => '4.0', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should contain_exec('install-dotnet-4').with(
+      it { should contain_exec('install-dotnet-4.0').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
-        'command'   => "& C:\\Windows\\Temp\\dotNet\\#{@four_prog} /q /norestart",
+        'command'   => "& C:\\Windows\\Temp\\#{@four_prog} /q /norestart",
         'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }"
       )}
 
@@ -159,13 +159,13 @@ describe 'dotnet', :type => :define do
     context "with ensure => present, version => 4.0, os => #{os}" do
       let :title do 'dotnet4' end
       let :params do
-        { :ensure => 'present', :version => '4.0' }
+        { :ensure => 'present', :version => '4.0', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should_not contain_exec('install-dotnet-4') }
+      it { should_not contain_exec('install-dotnet-4.0') }
     end
   end
 
@@ -173,16 +173,16 @@ describe 'dotnet', :type => :define do
     context "with ensure => absent, version => 4.0, os => #{os}" do
       let :title do 'dotnet4' end
       let :params do
-        { :ensure => 'absent', :version => '4.0' }
+        { :ensure => 'absent', :version => '4.0', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should contain_exec('uninstall-dotnet-4').with(
+      it { should contain_exec('uninstall-dotnet-4.0').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
-        'command'   => "& C:\\Windows\\Temp\\dotNet\\#{@four_prog} /x /q /norestart",
+        'command'   => "& C:\\Windows\\Temp\\#{@four_prog} /x /q /norestart",
         'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }"
       )}
     end
@@ -192,13 +192,13 @@ describe 'dotnet', :type => :define do
     context "with ensure => absent, version => 4.0, os => #{os}" do
       let :title do 'dotnet4' end
       let :params do
-        { :ensure => 'absent', :version => '4.0' }
+        { :ensure => 'absent', :version => '4.0', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should_not contain_exec('uninstall-dotnet-4') }
+      it { should_not contain_exec('uninstall-dotnet-4.0') }
     end
   end
 
@@ -206,16 +206,16 @@ describe 'dotnet', :type => :define do
     context "with ensure => present, version => 4.5, os => #{os}" do
       let :title do 'dotnet45' end
       let :params do
-        { :ensure => 'present', :version => '4.5' }
+        { :ensure => 'present', :version => '4.5', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should contain_exec('install-dotnet-45').with(
+      it { should contain_exec('install-dotnet-4.5').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
-        'command'   => "& C:\\Windows\\Temp\\dotNet\\#{@four_five_prog} /q /norestart",
+        'command'   => "& C:\\Windows\\Temp\\#{@four_five_prog} /q /norestart",
         'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_five_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }"
       )}
     end
@@ -225,13 +225,13 @@ describe 'dotnet', :type => :define do
     context "with ensure => present, version => 4.5, os => #{os}" do
       let :title do 'dotnet45' end
       let :params do
-        { :ensure => 'present', :version => '4.5' }
+        { :ensure => 'present', :version => '4.5', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should_not contain_exec('install-dotnet-45') }
+      it { should_not contain_exec('install-dotnet-4.5') }
     end
   end
 
@@ -239,16 +239,16 @@ describe 'dotnet', :type => :define do
     context 'with ensure => absent, version => 4.5' do
       let :title do 'dotnet45' end
       let :params do
-        { :ensure => 'absent', :version => '4.5' }
+        { :ensure => 'absent', :version => '4.5', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should contain_exec('uninstall-dotnet-45').with(
+      it { should contain_exec('uninstall-dotnet-4.5').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
-        'command'   => "& C:\\Windows\\Temp\\dotNet\\#{@four_five_prog} /x /q /norestart",
+        'command'   => "& C:\\Windows\\Temp\\#{@four_five_prog} /x /q /norestart",
         'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_five_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }"
       )}
     end
@@ -258,13 +258,13 @@ describe 'dotnet', :type => :define do
     context "with ensure => absent, version => 4.5, os => #{os}" do
       let :title do 'dotnet45' end
       let :params do
-        { :ensure => 'absent', :version => '4.5' }
+        { :ensure => 'absent', :version => '4.5', :source_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
       end
 
-      it { should_not contain_exec('uninstall-dotnet-45') }
+      it { should_not contain_exec('uninstall-dotnet-4.5') }
     end
   end
 
@@ -280,7 +280,7 @@ describe 'dotnet', :type => :define do
 
       it do
         expect {
-          should contain_exec('install-dotnet-35')
+          should contain_exec('install-dotnet-3.5')
         }.to raise_error(Puppet::Error)
       end
     end
@@ -298,7 +298,7 @@ describe 'dotnet', :type => :define do
 
       it do
         expect {
-          should contain_exec('install-dotnet-35')
+          should contain_exec('install-dotnet-3.5')
         }.to raise_error(Puppet::Error)
       end
     end
