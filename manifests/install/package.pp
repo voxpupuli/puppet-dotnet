@@ -11,7 +11,7 @@ define dotnet::install::package(
   $key = $dotnet::params::version[$version]['key']
 
 
-  if "x${source_dir}x" == 'xx' {
+  if "x${package_dir}x" == 'xx' {
     $source_dir = "C:\\Windows\\Temp"
     if $ensure == 'present' {
       download_file { "download-dotnet-${version}" :

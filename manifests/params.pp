@@ -26,12 +26,12 @@ class dotnet::params {
       'key' => 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1AD147D0-BE0E-3D6C-AC11-64F6DC4163F1}'
     },
     '4.5.1' => {
-      'url' => 'http://download.microsoft.com/download/1/6/7/167F0D79-9317-48AE-AEDB-17120579F8E2/NDP451-KB2858728-x86-x64-AllOS-ENU.exe'
+      'url' => 'http://download.microsoft.com/download/1/6/7/167F0D79-9317-48AE-AEDB-17120579F8E2/NDP451-KB2858728-x86-x64-AllOS-ENU.exe',
       'exe' => 'NDP451-KB2858728-x86-x64-AllOS-ENU.exe',
       'key' => 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{7DEBE4EB-6B40-3766-BB35-5CBBC385DA37}'
     },
     '4.5.2' => {
-      'url' => 'http://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe'
+      'url' => 'http://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe',
       'exe' => 'NDP451-KB2858728-x86-x64-AllOS-ENU.exe',
       'key' => 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{26784146-6E05-3FF9-9335-786C7C0FB5BE}'
     }
