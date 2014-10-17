@@ -30,7 +30,7 @@
 define dotnet(
   $ensure  = 'present',
   $version = '',
-  $source_dir = ''
+  $package_dir = ''
 ) {
 
   validate_re($ensure,['^(present|absent)$'])
@@ -72,7 +72,7 @@ define dotnet(
     dotnet::install::package { "dotnet-package-${version}":
       ensure     => $ensure,
       version    => $version,
-      source_dir => $source_dir
+      package_dir => $package_dir
     }
   } else {
 
