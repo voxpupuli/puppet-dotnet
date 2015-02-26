@@ -33,7 +33,10 @@
 define dotnet(
   $ensure  = 'present',
   $version = '',
-  $package_dir = ''
+  $package_dir = '',
+  $url = undef,
+  $key = undef,
+  $exe = undef
 ) {
 
   validate_re($ensure,['^(present|absent)$'])
@@ -70,13 +73,16 @@ define dotnet(
   if $type == 'feature' {
     dotnet::install::feature { "dotnet-feature-${version}":
       ensure  => $ensure,
-      version => $version
+      version => $version,
     }
   } elsif $type == 'package' {
     dotnet::install::package { "dotnet-package-${version}":
-      ensure     => $ensure,
-      version    => $version,
-      package_dir => $package_dir
+      ensure      => $ensure,
+      version     => $version,
+      package_dir => $package_dir,
+      url         => $url,
+      key         => $key,
+      exe         => $exe
     }
   } else {
 
