@@ -15,11 +15,12 @@ group :development, :test do
   end
 
   if ENV['RUBY_VERSION'] =~ /1.8/
-    gem 'rake', '10.3.2'
+    gem 'i18n', '0.6.11'
   else
-    gem 'rake',                                                                  :require => false
+    gem 'i18n',                                                                  :require => false
   end
   
+  gem 'rake'                                                                     :require => false
   gem 'puppet-lint',                                                             :require => false
   gem 'rspec-puppet',
     :git => 'https://github.com/rodjek/rspec-puppet.git',
