@@ -5,7 +5,6 @@ ENV['RUBY_VERSION'] = `ruby -v`
 group :development, :test do
 
   if ENV['RUBY_VERSION'] =~ /1.8/
-    gem 'rake', '10.3.2'
     gem 'rest-client', '1.6.8'
     gem 'gssapi', '1.2.0'
     gem 'celluloid', '0.11.1'
@@ -15,7 +14,12 @@ group :development, :test do
     gem 'puppet-doc-lint', :require => false
   end
 
-  gem 'rake',                                                                    :require => false
+  if ENV['RUBY_VERSION'] =~ /1.8/
+    gem 'rake', '10.3.2'
+  else
+    gem 'rake',                                                                  :require => false
+  end
+  
   gem 'puppet-lint',                                                             :require => false
   gem 'rspec-puppet',
     :git => 'https://github.com/rodjek/rspec-puppet.git',
