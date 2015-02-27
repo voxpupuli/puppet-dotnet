@@ -17,8 +17,12 @@ group :development, :test do
   if ENV['RUBY_VERSION'] =~ /1.8/
     gem 'i18n', '0.6.11'
     gem 'activesupport', '3.2.21'
+    gem 'winrm', '1.1.3'
+    gem 'nokogiri', '1.6.1'
+    gem 'highline', '1.6.21'
   else
     gem 'i18n', '>=0.7.0'
+    gem 'winrm', '>=1.1.3'
   end
   
   gem 'rake',                                                                     :require => false
@@ -34,7 +38,6 @@ group :development, :test do
   gem 'beaker-rspec',                                                            :require => false
   gem 'serverspec',                                                              :require => false
   gem 'specinfra',                                                               :require => false
-  gem 'winrm',                                                                   :require => false
   gem 'travis',                                                                  :require => false
   gem 'travis-lint',                                                             :require => false
   gem 'vagrant-wrapper',                                                         :require => false
