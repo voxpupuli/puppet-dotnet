@@ -17,7 +17,7 @@ group :development, :test do
   if ENV['RUBY_VERSION'] =~ /1.8/
     gem 'i18n', '0.6.11'
   else
-    gem 'i18n',                                                                  :require => false
+    gem 'i18n', '>=0.7.0'
   end
   
   gem 'rake'                                                                     :require => false
