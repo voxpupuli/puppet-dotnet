@@ -25,6 +25,7 @@ define dotnet::install::package(
       download_file { "download-dotnet-${version}" :
         url                   => $url,
         destination_directory => $source_dir,
+        before                => Exec["configure-dotnet-${version}-${ensure}"],
       }
     } else {
       file { "C:/Windows/Temp/${exe}":
@@ -36,20 +37,20 @@ define dotnet::install::package(
   }
 
   if $ensure == 'present' {
-    exec { "install-dotnet-${version}":
+    exec { "configure-dotnet-${version}-${ensure}":
       command   => "& ${source_dir}\\${exe} /q /norestart",
       provider  => powershell,
       logoutput => true,
       unless    => "if ((Get-Item -LiteralPath \'${key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 0 }",
-      require   => Download_file["download-dotnet-${version}"],
+
     }
   } else {
-    exec { "uninstall-dotnet-${version}":
+    exec { "configure-dotnet-${version}-${ensure}":
       command   => "& ${source_dir}\\${exe} /x /q /norestart",
       provider  => powershell,
       logoutput => true,
       unless    => "if ((Get-Item -LiteralPath \'${key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 1 }",
-      require   => Download_file["download-dotnet-${version}"],
+
     }
   }
 
