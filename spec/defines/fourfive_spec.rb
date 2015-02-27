@@ -20,7 +20,7 @@ describe 'dotnet', :type => :define do
         { :operatingsystemversion => os }
       end
 
-      it { should contain_exec('install-dotnet-4.5').with(
+      it { should contain_exec('configure-dotnet-4.5-present').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
         'command'   => "& C:\\Windows\\Temp\\#{@four_five_prog} /q /norestart",
@@ -44,7 +44,7 @@ describe 'dotnet', :type => :define do
         'destination_directory' => 'C:\\Windows\\Temp'
       ) }
 
-      it { should contain_exec('install-dotnet-4.5').with(
+      it { should contain_exec('configure-dotnet-4.5-present').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
         'command'   => "& C:\\Windows\\Temp\\#{@four_five_prog} /q /norestart",
@@ -63,7 +63,7 @@ describe 'dotnet', :type => :define do
         { :operatingsystemversion => os }
       end
 
-      it { should_not contain_exec('install-dotnet-4.5') }
+      it { should_not contain_exec('configure-dotnet-4.5-present') }
     end
   end
 
@@ -77,7 +77,7 @@ describe 'dotnet', :type => :define do
         { :operatingsystemversion => os }
       end
 
-      it { should contain_exec('uninstall-dotnet-4.5').with(
+      it { should contain_exec('configure-dotnet-4.5-absent').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
         'command'   => "& C:\\Windows\\Temp\\#{@four_five_prog} /x /q /norestart",
@@ -100,7 +100,7 @@ describe 'dotnet', :type => :define do
         'ensure' => 'absent'
       )}
 
-      it { should contain_exec('uninstall-dotnet-4.5').with(
+      it { should contain_exec('configure-dotnet-4.5-absent').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
         'command'   => "& C:\\Windows\\Temp\\#{@four_five_prog} /x /q /norestart",
@@ -119,7 +119,7 @@ describe 'dotnet', :type => :define do
         { :operatingsystemversion => os }
       end
 
-      it { should_not contain_exec('uninstall-dotnet-4.5') }
+      it { should_not contain_exec('configure-dotnet-4.5-absent') }
     end
   end
 
