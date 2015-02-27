@@ -9,7 +9,7 @@ describe 'dotnet', :type => :define do
       end
       let :title do 'fubar' end
       let :params do
-        { :version => 'fubar' }
+        { :version => 'fubar', :url => undef, :exe => undef, :key => undef }
       end
 
       it do
@@ -27,7 +27,7 @@ describe 'dotnet', :type => :define do
       end
       let :title do 'fubar' end
       let :params do
-        { :version => '3.5', :ensure => 'fubar' }
+        { :version => '3.5', :ensure => 'fubar', :url => undef, :exe => undef, :key => undef }
       end
 
       it do
