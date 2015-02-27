@@ -66,7 +66,7 @@ describe 'dotnet', :type => :define do
     context "with ensure => present, version => 3.5, os => #{os}, network package" do
       let :title do 'dotnet35' end
       let :params do
-        { :ensure => 'present', :version => '3.5', :package_dir => "C:\\Windows\\Temp", :url => Undef.new, :exe => Undef.new, :key => Undef.new }
+        { :ensure => 'present', :version => '3.5', :package_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
@@ -85,7 +85,7 @@ describe 'dotnet', :type => :define do
     context "with ensure => present, version => 3.5, os => #{os}, download package" do
       let :title do 'dotnet35' end
       let :params do
-        { :ensure => 'present', :version => '3.5', :url => Undef.new, :exe => Undef.new, :key => Undef.new }
+        { :ensure => 'present', :version => '3.5' }
       end
       let :facts do
         { :operatingsystemversion => os }
@@ -109,7 +109,7 @@ describe 'dotnet', :type => :define do
     context "with ensure => present, version => 3.5, os => #{os}" do
       let :title do 'dotnet35' end
       let :params do
-        { :ensure => 'present', :version => '3.5', :package_dir => "C:\\Windows\\Temp", :url => Undef.new, :exe => Undef.new, :key => Undef.new }
+        { :ensure => 'present', :version => '3.5', :package_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
@@ -123,7 +123,7 @@ describe 'dotnet', :type => :define do
     context "with ensure => absent, version => 3.5, os => #{os}" do
       let :title do 'dotnet35' end
       let :params do
-        { :ensure => 'absent', :version => '3.5', :package_dir => "C:\\Windows\\Temp", :url => Undef.new, :exe => Undef.new, :key => Undef.new }
+        { :ensure => 'absent', :version => '3.5', :package_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }
@@ -142,7 +142,7 @@ describe 'dotnet', :type => :define do
     context "with ensure => absent, version => 3.5, os => #{os}, download package" do
       let :title do 'dotnet35' end
       let :params do
-        { :ensure => 'absent', :version => '3.5', :url => Undef.new, :exe => Undef.new, :key => Undef.new }
+        { :ensure => 'absent', :version => '3.5' }
       end
       let :facts do
         { :operatingsystemversion => os }
@@ -165,7 +165,7 @@ describe 'dotnet', :type => :define do
     context "with ensure => absent, version => 3.5, os => #{os}" do
       let :title do 'dotnet35' end
       let :params do
-        { :ensure => 'absent', :version => '3.5', :package_dir => "C:\\Windows\\Temp", :url => Undef.new, :exe => Undef.new, :key => Undef.new }
+        { :ensure => 'absent', :version => '3.5', :package_dir => "C:\\Windows\\Temp" }
       end
       let :facts do
         { :operatingsystemversion => os }

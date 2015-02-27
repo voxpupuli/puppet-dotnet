@@ -34,9 +34,9 @@ define dotnet(
   $ensure  = 'present',
   $version = '',
   $package_dir = '',
-  $url = undef,
-  $key = undef,
-  $exe = undef
+  $url = '',
+  $key = '',
+  $exe = ''
 ) {
 
   validate_re($ensure,['^(present|absent)$'])

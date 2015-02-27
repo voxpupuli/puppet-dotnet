@@ -2,20 +2,20 @@ define dotnet::install::package(
   $ensure = 'present',
   $version = '',
   $package_dir = '',
-  $url,
-  $exe,
-  $key
+  $url = '',
+  $exe = '',
+  $key = ''
 ) {
 
   include dotnet::params
 
-  if(!$url){
+  if("x${url}x" == 'xx'){
     $url = $dotnet::params::version[$version]['url']
   }
-  if(!$exe){
+  if("x${exe}x" == 'xx'){
     $exe = $dotnet::params::version[$version]['exe']
   }
-  if(!$key){
+  if("x${key}x" == 'xx'){
     $key = $dotnet::params::version[$version]['key']
   }
 
