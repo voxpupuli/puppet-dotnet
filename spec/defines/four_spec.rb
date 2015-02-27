@@ -20,7 +20,7 @@ describe 'dotnet', :type => :define do
         { :operatingsystemversion => os }
       end
 
-      it { should contain_exec('install-dotnet-4.0').with(
+      it { should contain_exec('configure-dotnet-4.0-present').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
         'command'   => "& C:\\Windows\\Temp\\#{@four_prog} /q /norestart",
@@ -45,7 +45,7 @@ describe 'dotnet', :type => :define do
         'destination_directory' => 'C:\\Windows\\Temp'
       ) }
 
-      it { should contain_exec('install-dotnet-4.0').with(
+      it { should contain_exec('configure-dotnet-4.0-present').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
         'command'   => "& C:\\Windows\\Temp\\#{@four_prog} /q /norestart",
@@ -65,7 +65,7 @@ describe 'dotnet', :type => :define do
         { :operatingsystemversion => os }
       end
 
-      it { should_not contain_exec('install-dotnet-4.0') }
+      it { should_not contain_exec('configure-dotnet-4.0-present') }
     end
   end
 
@@ -79,7 +79,7 @@ describe 'dotnet', :type => :define do
         { :operatingsystemversion => os }
       end
 
-      it { should contain_exec('uninstall-dotnet-4.0').with(
+      it { should contain_exec('configure-dotnet-4.0-absent').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
         'command'   => "& C:\\Windows\\Temp\\#{@four_prog} /x /q /norestart",
@@ -102,7 +102,7 @@ describe 'dotnet', :type => :define do
         'ensure' => 'absent'
       )}
 
-      it { should contain_exec('uninstall-dotnet-4.0').with(
+      it { should contain_exec('configure-dotnet-4.0-absent').with(
         'provider'  => 'powershell',
         'logoutput' => 'true',
         'command'   => "& C:\\Windows\\Temp\\#{@four_prog} /x /q /norestart",
@@ -121,7 +121,7 @@ describe 'dotnet', :type => :define do
         { :operatingsystemversion => os }
       end
 
-      it { should_not contain_exec('uninstall-dotnet-4.0') }
+      it { should_not contain_exec('configure-dotnet-4.0-absent') }
     end
   end
 end
