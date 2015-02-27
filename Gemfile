@@ -20,7 +20,7 @@ group :development, :test do
     gem 'i18n', '>=0.7.0'
   end
   
-  gem 'rake'                                                                     :require => false
+  gem 'rake',                                                                     :require => false
   gem 'puppet-lint',                                                             :require => false
   gem 'rspec-puppet',
     :git => 'https://github.com/rodjek/rspec-puppet.git',
