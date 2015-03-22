@@ -74,8 +74,8 @@ define dotnet(
     }
   } elsif $type == 'package' {
     dotnet::install::package { "dotnet-package-${version}":
-      ensure     => $ensure,
-      version    => $version,
+      ensure      => $ensure,
+      version     => $version,
       package_dir => $package_dir
     }
   } else {
