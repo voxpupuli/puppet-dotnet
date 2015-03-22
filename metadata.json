@@ -1,12 +1,12 @@
 {
-  "name":         "liamjbennett-dotnet",
-  "version":      "1.0.0",
-  "author":       "liamjbennett",
-  "license":      "MIT",
+  "name":         "puppet-dotnet",
+  "version":      "1.0.1",
+  "author":       "puppet-community",
+  "license":      "Apache 2.0",
   "summary":      "'Module to manage the Microsoft .NET framework",
-  "source":       "https://github.com/liamjbennett/puppet-dotnet",
-  "project_page": "https://github.com/liamjbennett/puppet-dotnet",
-  "issues_url":   "https://github.com/liamjbennett/puppet-dotnet/issues",
+  "source":       "https://github.com/puppet-community/puppet-dotnet",
+  "project_page": "https://github.com/puppet-community/puppet-dotnet",
+  "issues_url":   "https://github.com/puppet-community/puppet-dotnet/issues",
   "operatingsystem_support": [
     {
       "operatingsystem": "windows",
