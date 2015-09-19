@@ -1,6 +1,6 @@
 {
   "name":         "puppet-dotnet",
-  "version":      "1.0.1",
+  "version":      "2.0.0",
   "author":       "puppet-community",
   "license":      "Apache 2.0",
   "summary":      "'Module to manage the Microsoft .NET framework",
@@ -27,8 +27,8 @@
       "version_requirement": ">= 0.0.1 <2.0.0"
     },
     {
-      "name": "opentable/download_file",
-      "version_requirement": ">= 1.0.0 <2.0.0"
+      "name": "lwf/remote_file",
+      "version_requirement": ">= 1.0.1 <2.0.0"
     }
   ]
 }

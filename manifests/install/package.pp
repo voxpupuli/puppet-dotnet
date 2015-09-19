@@ -1,47 +1,32 @@
 #
 define dotnet::install::package(
-  $ensure = 'present',
-  $version = '',
+  $ensure      = 'present',
+  $version     = '',
   $package_dir = ''
 ) {
 
   include dotnet::params
 
-  $url = $dotnet::params::version[$version]['url']
-  $exe = $dotnet::params::version[$version]['exe']
-  $key = $dotnet::params::version[$version]['key']
-
+  $url     = $dotnet::params::version[$version]['url']
+  $exe     = $dotnet::params::version[$version]['exe']
+  $key     = $dotnet::params::version[$version]['key']
+  $package = $dotnet::params::version[$version]['package']
 
   if "x${package_dir}x" == 'xx' {
-    $source_dir = 'C:\Windows\Temp'
-    if $ensure == 'present' {
-      download_file { "download-dotnet-${version}" :
-        url                   => $url,
-        destination_directory => $source_dir
-      }
-    } else {
-      file { "C:/Windows/Temp/${exe}":
-        ensure => absent
-      }
+    $source_file = "C:/Windows/Temp/${exe}"
+    remote_file { $source_file:
+      ensure => $ensure,
+      source => $url,
     }
   } else {
-    $source_dir = $package_dir
+    $source_file = "${package_dir}/${exe}"
   }
 
-  if $ensure == 'present' {
-    exec { "install-dotnet-${version}":
-      command   => "& ${source_dir}\\${exe} /q /norestart",
-      provider  => powershell,
-      logoutput => true,
-      unless    => "if ((Get-Item -LiteralPath \'${key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 0 }"
-    }
-  } else {
-    exec { "uninstall-dotnet-${version}":
-      command   => "& ${source_dir}\\${exe} /x /q /norestart",
-      provider  => powershell,
-      logoutput => true,
-      unless    => "if ((Get-Item -LiteralPath \'${key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 1 }"
-    }
+  package { $package:
+    ensure            => $ensure,
+    source            => $source_file,
+    install_options   => ['/q', '/norestart'],
+    uninstall_options => ['/x', '/q', '/norestart'],
   }
 
 }
