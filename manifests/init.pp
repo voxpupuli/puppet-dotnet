@@ -31,54 +31,98 @@
 #    }
 #
 define dotnet(
-  $ensure  = 'present',
-  $version = '',
-  $package_dir = ''
+  Enum['3.5', '4.0', '4.5', '4.5.1', '4.5.2']
+  $version,
+
+  Enum['present', 'absent']
+  $ensure = 'present',
+
+  Variant[String, Undef]
+  $package_dir = undef,
 ) {
 
-  validate_re($ensure,['^(present|absent)$'])
-  validate_re($version,['^(3.5|4\.0|4\.5(\.\d)?)$'])
+  include dotnet::params
 
-  include ::dotnet::params
+  if $::os['family'] != 'windows' {
+    fail("dotnet ${version} is not supported on ${::os['family']}")
+  }
+
+  $windows_version = $::os['release']['full']
 
   case $version {
     '3.5': {
-      case $::operatingsystemversion {
-        /^Windows.Server.(2008|2012).?(R2)?.*/: { $type = 'feature' }
-        /^Windows (XP|Vista|7|8|8.1).*/: { $type = 'package' }
-        default: { $type = 'err' err("dotnet ${version} is not support on this version of windows") }
+      case $windows_version {
+        /^2012/: {
+          $type    = 'feature'
+          $feature = 'NET-Framework-Features'
+        }
+        '2008 R2': {
+          $type    = 'feature'
+          $feature = 'AS-NET-Framework'
+        }
+        '7', '8', '8.1':                { $type = 'dism'    }
+        /^2003/, '2008', 'XP', 'Vista': { $type = 'package' }
+        default:                        { $type = 'err'     }
       }
     }
     '4.0': {
-      case $::operatingsystemversion {
-        /^Windows.(Server)?.?(2003|2008|2012|XP|Vista|7|8.*).?(R2)?.*/: { $type = 'package' }
-        default: { $type = 'err' err("dotnet ${version} is not support on this version of windows") }
+      case $windows_version {
+        /^2012/, '8', '8.1':                  { $type = 'builtin' }
+        /^2003/, /^2008/, 'XP', 'Vista', '7': { $type = 'package' }
+        default:                              { $type = 'err'     }
       }
     }
-    /4\.5(\.\d)?/: {
-      case $::operatingsystemversion {
-        /^Windows.(Server)?.?(2008|2012|Vista|7|8.*).?(R2)?.*/: { $type = 'package' }
-        default: { $type = 'err' err("dotnet ${version} is not support on this version of windows") }
+    '4.5': {
+      case $windows_version {
+        /^2012/, '8', '8.1':                  { $type = 'builtin' }
+        /^2003/, /^2008/, 'XP', 'Vista', '7': { $type = 'package' }
+        default:                              { $type = 'err'     }
       }
+    }
+    '4.5.1': {
+      case $windows_version {
+        '2012 R2', '8.1':                                  { $type = 'builtin' }
+        /^2003/, /^2008/, '2012', 'XP', 'Vista', '7', '8': { $type = 'package' }
+        default:                                           { $type = 'err'     }
+      }
+    }
+    '4.5.2': {
+      case $windows_version {
+        /^2003/, /^2008/, /^2012/, 'XP', 'Vista', '7', '8', '8.1': { $type = 'package' }
+        default:                                                   { $type = 'err'     }
+      }
+    }
+    default: { $type = 'err' }
+  }
+
+  case $type {
+    'feature': {
+      dotnet::install::feature { "dotnet-feature-${version}":
+        ensure  => $ensure,
+        version => $version,
+        feature => $feature,
+        source  => $package_dir,
+      }
+    }
+    'dism': {
+      dotnet::install::dism { "dotnet-dism-${version}":
+        ensure  => $ensure,
+        version => $version,
+      }
+    }
+    'package': {
+      dotnet::install::package { "dotnet-package-${version}":
+        ensure      => $ensure,
+        version     => $version,
+        package_dir => $package_dir,
+      }
+    }
+    'builtin': {
+      # This .NET version is built into the OS. No configuration required.
     }
     default: {
-      $type = 'err'
-      err("dotnet does not have a version: ${version}")
+      fail("dotnet ${version} is not supported on windows ${windows_version}")
     }
   }
 
-  if $type == 'feature' {
-    dotnet::install::feature { "dotnet-feature-${version}":
-      ensure  => $ensure,
-      version => $version,
-    }
-  } elsif $type == 'package' {
-    dotnet::install::package { "dotnet-package-${version}":
-      ensure      => $ensure,
-      version     => $version,
-      package_dir => $package_dir,
-    }
-  } else {
-
-  }
 }

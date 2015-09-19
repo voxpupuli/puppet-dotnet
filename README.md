@@ -63,7 +63,10 @@ Ensures the state of .net on the system. Present or Absent.
 The version of .net that you want to be managed by this definition.
 
 #####`package_dir`
-If installing .NET from a directory or a mounted network location then this is that directory
+If installing .NET from a directory or a mounted network location then this is
+that directory. If the version of .NET being installed is a Windows feature, it
+may sometimes be necessary to specify package\_dir as the path to installation
+media, such as `D:\sources\sxs`.
 
 ##Reference
 

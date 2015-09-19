@@ -1,22 +1,29 @@
 #
 define dotnet::install::feature(
-  $ensure = 'present',
-  $version = ''
+  $version,
+  $ensure  = 'present',
+  $feature = 'AS-NET-Framework',
+  $source  = undef,
 ) {
 
+  $source_flag = $source ? {
+    undef   => '',
+    default => "-source ${source}",
+  }
+
   if $ensure == 'present' {
-    exec { "install-feature-${version}":
-      command   => 'Import-Module ServerManager; Add-WindowsFeature as-net-framework',
+    exec { "install-dotnet-feature-${version}":
+      command   => "Import-Module ServerManager; Add-WindowsFeature ${feature} ${source_flag}",
       provider  => powershell,
       logoutput => true,
-      unless    => "Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v${version}",
+      creates   => "C:/Windows/Microsoft.NET/Framework/v${version}",
     }
   } else {
-    exec { "uninstall-feature-${version}":
-      command   => 'Import-Module ServerManager; Remove-WindowsFeature as-net-framework',
+    exec { "uninstall-dotnet-feature-${version}":
+      command   => "Import-Module ServerManager; Remove-WindowsFeature ${feature}",
       provider  => powershell,
       logoutput => true,
-      onlyif    => "Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v${version}",
+      onlyif    => "If (-Not(Test-Path C:/Windows/Microsoft.NET/Framework/v${version})) { Exit 1 }",
     }
   }
 
