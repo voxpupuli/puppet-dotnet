@@ -47,14 +47,15 @@ define dotnet(
   case $version {
     '3.5': {
       case $windows_version {
-        /^(2008|2012).?(R2)?.*/:  { $type = 'feature' }
+        /^(2008|2012)( R2)?.*/:  { $type = 'feature' }
         /^(XP|Vista|7|8|8.1).*/: { $type = 'package' }
         default: { $type = 'err' }
       }
     }
     '4.0': {
       case $windows_version {
-        /^(2003|2008|2012|XP|Vista|7|8.*).?(R2)?.*/: { $type = 'package' }
+        /^(2003|2008|XP|Vista|7)( R2)?.*/: { $type = 'package' }
+        /^(2012|8|8.1)( R2)?.*/:           { $type = 'builtin' }
         default: { $type = 'err' }
       }
     }
@@ -78,6 +79,8 @@ define dotnet(
       version     => $version,
       package_dir => $package_dir,
     }
+  } elsif $type == 'builtin' {
+    # This .NET version is built into the OS. No configuration required.
   } else {
     fail("dotnet ${version} is not supported on windows ${windows_version}")
   }
