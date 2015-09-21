@@ -43,25 +43,44 @@ define dotnet(
 
   include dotnet::params
 
+  if $::os['family'] != 'windows' {
+    fail("dotnet ${version} is not supported on ${::os['family']}")
+  }
+
   $windows_version = $::os['release']['full']
+
   case $version {
     '3.5': {
       case $windows_version {
-        /^(2008|2012)( R2)?.*/:  { $type = 'feature' }
-        /^(XP|Vista|7|8|8.1).*/: { $type = 'package' }
+        /^2008/, /^2012/:  { $type = 'feature' }
+        /^2003/, 'XP', 'Vista', '7', '8', '8.1': { $type = 'package' }
         default: { $type = 'err' }
       }
     }
     '4.0': {
       case $windows_version {
-        /^(2003|2008|XP|Vista|7)( R2)?.*/: { $type = 'package' }
-        /^(2012|8|8.1)( R2)?.*/:           { $type = 'builtin' }
+        /^2012/, '8', '8.1': { $type = 'builtin' }
+        /^2003/, /^2008/, 'XP', 'Vista', '7': { $type = 'package' }
         default: { $type = 'err' }
       }
     }
-    /4\.5(\.\d)?/: {
+    '4.5': {
       case $windows_version {
-        /^(2008|2012|Vista|7|8.*).?(R2)?.*/: { $type = 'package' }
+        /^2012/, '8', '8.1': { $type = 'builtin' }
+        /^2003/, /^2008/, 'XP', 'Vista', '7': { $type = 'package' }
+        default: { $type = 'err' }
+      }
+    }
+    '4.5.1': {
+      case $windows_version {
+        '2012 R2', '8.1': { $type = 'builtin' }
+        /^2003/, /^2008/, '2012', 'XP', 'Vista', '7', '8': { $type = 'package' }
+        default: { $type = 'err' }
+      }
+    }
+    '4.5.2': {
+      case $windows_version {
+        /^2003/, /^2008/, /^2012/, 'XP', 'Vista', '7', '8', '8.1': { $type = 'package' }
         default: { $type = 'err' }
       }
     }
