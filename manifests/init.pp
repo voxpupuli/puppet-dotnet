@@ -31,54 +31,55 @@
 #    }
 #
 define dotnet(
-  $ensure  = 'present',
-  $version = '',
-  $package_dir = ''
-) {
+  Enum['present', 'absent']
+  $ensure = 'present',
 
-  validate_re($ensure,['^(present|absent)$'])
-  validate_re($version,['^(3.5|4\.0|4\.5(\.\d)?)$'])
+  Enum['3.5', '4.0', '4.5.1', '4.5.2']
+  $version,
+
+  Variant[String, Undef]
+  $package_dir = undef,
+) {
 
   include dotnet::params
 
+  $windows_version = $::os['release']['full']
   case $version {
     '3.5': {
-      case $::operatingsystemversion {
-        /^Windows.Server.(2008|2012).?(R2)?.*/: { $type = 'feature' }
-        /^Windows (XP|Vista|7|8|8.1).*/: { $type = 'package' }
-        default: { $type = 'err' err("dotnet ${version} is not support on this version of windows") }
+      case $windows_version {
+        /^(2008|2012).?(R2)?.*/:  { $type = 'feature' }
+        /^(XP|Vista|7|8|8.1).*/: { $type = 'package' }
+        default: { $type = 'err' }
       }
     }
     '4.0': {
-      case $::operatingsystemversion {
-        /^Windows.(Server)?.?(2003|2008|2012|XP|Vista|7|8.*).?(R2)?.*/: { $type = 'package' }
-        default: { $type = 'err' err("dotnet ${version} is not support on this version of windows") }
+      case $windows_version {
+        /^(2003|2008|2012|XP|Vista|7|8.*).?(R2)?.*/: { $type = 'package' }
+        default: { $type = 'err' }
       }
     }
     /4\.5(\.\d)?/: {
-      case $::operatingsystemversion {
-        /^Windows.(Server)?.?(2008|2012|Vista|7|8.*).?(R2)?.*/: { $type = 'package' }
-        default: { $type = 'err' err("dotnet ${version} is not support on this version of windows") }
+      case $windows_version {
+        /^(2008|2012|Vista|7|8.*).?(R2)?.*/: { $type = 'package' }
+        default: { $type = 'err' }
       }
     }
-    default: {
-      $type = 'err'
-      err("dotnet does not have a version: ${version}")
-    }
+    default: { $type = 'err' }
   }
 
   if $type == 'feature' {
     dotnet::install::feature { "dotnet-feature-${version}":
       ensure  => $ensure,
-      version => $version
+      version => $version,
     }
   } elsif $type == 'package' {
     dotnet::install::package { "dotnet-package-${version}":
       ensure      => $ensure,
       version     => $version,
-      package_dir => $package_dir
+      package_dir => $package_dir,
     }
   } else {
-
+    fail("dotnet ${version} is not supported on windows ${windows_version}")
   }
+
 }

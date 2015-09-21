@@ -9,7 +9,6 @@ define dotnet::install::package(
 
   $url     = $dotnet::params::version[$version]['url']
   $exe     = $dotnet::params::version[$version]['exe']
-  $key     = $dotnet::params::version[$version]['key']
   $package = $dotnet::params::version[$version]['package']
 
   if "x${package_dir}x" == 'xx' {
