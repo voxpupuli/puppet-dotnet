@@ -31,11 +31,11 @@
 #    }
 #
 define dotnet(
-  Enum['present', 'absent']
-  $ensure = 'present',
-
   Enum['3.5', '4.0', '4.5.1', '4.5.2']
   $version,
+
+  Enum['present', 'absent']
+  $ensure = 'present',
 
   Variant[String, Undef]
   $package_dir = undef,
