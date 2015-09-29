@@ -1,12 +1,22 @@
 {
   "name":         "puppet-dotnet",
-  "version":      "1.0.1",
+  "version":      "2.0.0",
   "author":       "puppet-community",
   "license":      "Apache 2.0",
   "summary":      "'Module to manage the Microsoft .NET framework",
   "source":       "https://github.com/puppet-community/puppet-dotnet",
   "project_page": "https://github.com/puppet-community/puppet-dotnet",
   "issues_url":   "https://github.com/puppet-community/puppet-dotnet/issues",
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": ">=2015.2.0"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">=4.2.1"
+    }
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "windows",
@@ -15,20 +25,12 @@
   ],
   "dependencies": [
     {
-      "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 3.0.0 <5.0.0"
-    },
-    {
       "name": "puppetlabs/powershell",
       "version_requirement": ">= 1.0.0 <2.0.0"
     },
     {
-      "name": "liamjbennett/win_facts",
-      "version_requirement": ">= 0.0.1 <2.0.0"
-    },
-    {
-      "name": "opentable/download_file",
-      "version_requirement": ">= 1.0.0 <2.0.0"
+      "name": "lwf/remote_file",
+      "version_requirement": ">= 1.0.1 <2.0.0"
     }
   ]
 }

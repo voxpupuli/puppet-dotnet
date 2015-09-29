@@ -5,14 +5,14 @@ define dotnet::install::feature(
 ) {
 
   if $ensure == 'present' {
-    exec { "install-feature-${version}":
+    exec { "install-dotnet-feature-${version}":
       command   => 'Import-Module ServerManager; Add-WindowsFeature as-net-framework',
       provider  => powershell,
       logoutput => true,
       unless    => "Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v${version}",
     }
   } else {
-    exec { "uninstall-feature-${version}":
+    exec { "uninstall-dotnet-feature-${version}":
       command   => 'Import-Module ServerManager; Remove-WindowsFeature as-net-framework',
       provider  => powershell,
       logoutput => true,
