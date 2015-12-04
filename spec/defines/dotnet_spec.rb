@@ -1,39 +1,38 @@
 require 'spec_helper'
 
-describe 'dotnet', :type => :define do
-
-  ['Windows Server 2012','Windows Server 2008 R2','Windows Server 2008', 'Windows Server 2003','Windows Server 2003 R2','Windows 8','Windows 7','Windows Vista','Windows XP'].each do |os|
+describe 'dotnet', type: :define do
+  ['Windows Server 2012', 'Windows Server 2008 R2', 'Windows Server 2008', 'Windows Server 2003', 'Windows Server 2003 R2', 'Windows 8', 'Windows 7', 'Windows Vista', 'Windows XP'].each do |os|
     context "with invalid custom param: os => #{os}, version => fubar" do
-      let :facts do
-        { :operatingsystemversion => os }
+      let(:title) { 'fubar' }
+      let(:params) do
+        { version: 'fubar' }
       end
-      let :title do 'fubar' end
-      let :params do
-        { :version => 'fubar' }
+      let(:facts) do
+        { operatingsystemversion: os }
       end
 
       it do
-        expect {
+        expect do
           should contain_exec('install-dotnet-3.5')
-        }.to raise_error(Puppet::Error)
+        end.to raise_error(Puppet::Error)
       end
     end
   end
 
-  ['Windows Server 2012','Windows Server 2008 R2','Windows Server 2008', 'Windows Server 2003','Windows Server 2003 R2','Windows 8','Windows 7','Windows Vista','Windows XP'].each do |os|
+  ['Windows Server 2012', 'Windows Server 2008 R2', 'Windows Server 2008', 'Windows Server 2003', 'Windows Server 2003 R2', 'Windows 8', 'Windows 7', 'Windows Vista', 'Windows XP'].each do |os|
     context "with invalid custom param: os => #{os}, ensure => fubar" do
-      let :facts do
-        { :operatingsystemversion => os }
+      let(:title) { 'fubar' }
+      let(:params) do
+        { version: '3.5', ensure: 'fubar' }
       end
-      let :title do 'fubar' end
-      let :params do
-        { :version => '3.5', :ensure => 'fubar' }
+      let(:facts) do
+        { operatingsystemversion: os }
       end
 
       it do
-        expect {
+        expect do
           should contain_exec('install-dotnet-3.5')
-        }.to raise_error(Puppet::Error)
+        end.to raise_error(Puppet::Error)
       end
     end
   end

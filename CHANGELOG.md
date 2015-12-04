@@ -1,5 +1,5 @@
 
-##2014-10-16 - Release 1.0.0
+##2014-10-16 Release 1.0.0
 ###Summary
 
 ####Features
@@ -16,7 +16,7 @@
 - fixing error when running with strict_variables
 - updating powershell dependency from joshcopper to puppetlabs
 
-##2013-05-01 - Release 0.0.2
+##2013-05-01 Release 0.0.2
 ###Summary
 
 ####Features
@@ -27,7 +27,7 @@
 
 - fixed warning about string escaping on puppet 3.x
 
-##2013-04-25 - Release 0.0.1
+##2013-04-25 Release 0.0.1
 ###Summary
 
   Initial release. Intalls 3.5, 4.0 and 4.5
