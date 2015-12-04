@@ -1,3 +1,15 @@
+##2015-12-04 Release 1.0.2
+###Summary
+
+####Bugfixes
+- fixed issue install dotnet 4.5.2
+
+
+##2015-03-23 Release 1.0.1
+###Summary
+
+- puppet-community release
+
 
 ##2014-10-16 Release 1.0.0
 ###Summary
