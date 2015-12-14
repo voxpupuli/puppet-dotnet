@@ -5,6 +5,8 @@ will likely make it into a release a little quicker.
 
 ## Contributing
 
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms. [Contributor Code of Conduct](https://github.com/puppet-community/code-of-conduct).
+
 1. Fork the repo.
 
 1. Create a separate branch for your change.
@@ -80,3 +82,4 @@ If you don't want to have to recreate the virtual machine every time you
 can use `BEAKER_DESTROY=no` and `BEAKER_PROVISION=no`. On the first run you will
 at least need `BEAKER_PROVISION` set to yes (the default). The Vagrantfile
 for the created virtual machines will be in `.vagrant/beaker_vagrant_fies`.
+
