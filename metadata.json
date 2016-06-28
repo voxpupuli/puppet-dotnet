@@ -2,7 +2,7 @@
   "name":         "puppet-dotnet",
   "version":      "1.0.2",
   "author":       "puppet-community",
-  "license":      "Apache-2.0",
+  "license":      "MIT",
   "summary":      "'Module to manage the Microsoft .NET framework",
   "source":       "https://github.com/puppet-community/puppet-dotnet",
   "project_page": "https://github.com/puppet-community/puppet-dotnet",
