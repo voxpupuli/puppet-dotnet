@@ -39,7 +39,7 @@ define dotnet(
   validate_re($ensure,['^(present|absent)$'])
   validate_re($version,['^(3.5|4\.0|4\.5(\.\d)?)$'])
 
-  include dotnet::params
+  include ::dotnet::params
 
   case $version {
     '3.5': {
@@ -70,13 +70,13 @@ define dotnet(
   if $type == 'feature' {
     dotnet::install::feature { "dotnet-feature-${version}":
       ensure  => $ensure,
-      version => $version
+      version => $version,
     }
   } elsif $type == 'package' {
     dotnet::install::package { "dotnet-package-${version}":
       ensure      => $ensure,
       version     => $version,
-      package_dir => $package_dir
+      package_dir => $package_dir,
     }
   } else {
 
