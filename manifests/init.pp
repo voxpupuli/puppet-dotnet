@@ -39,7 +39,7 @@ define dotnet(
   validate_re($ensure,['^(present|absent)$'])
   validate_re($version,['^(3.5|4\.0|4\.5(\.\d)?)$'])
 
-  include dotnet::params
+  include ::dotnet::params
 
   case $version {
     '3.5': {
