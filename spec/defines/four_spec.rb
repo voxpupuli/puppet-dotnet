@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+# rubocop:disable RSpec/InstanceVariable
 describe 'dotnet', type: :define do
   before do
     @hklm = 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall'
