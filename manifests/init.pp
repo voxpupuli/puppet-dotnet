@@ -70,13 +70,13 @@ define dotnet(
   if $type == 'feature' {
     dotnet::install::feature { "dotnet-feature-${version}":
       ensure  => $ensure,
-      version => $version
+      version => $version,
     }
   } elsif $type == 'package' {
     dotnet::install::package { "dotnet-package-${version}":
       ensure      => $ensure,
       version     => $version,
-      package_dir => $package_dir
+      package_dir => $package_dir,
     }
   } else {
 
