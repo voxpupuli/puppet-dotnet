@@ -19,6 +19,7 @@ PuppetLint.configuration.send('disable_140chars')
 PuppetLint.configuration.send('disable_class_inherits_from_params_class')
 PuppetLint.configuration.send('disable_documentation')
 PuppetLint.configuration.send('disable_single_quote_string_with_variables')
+PuppetLint.configuration.send('disable_relative_classname_inclusion')
 
 exclude_paths = %w(
   pkg/**/*
@@ -34,11 +35,9 @@ RSpec::Core::RakeTask.new(:acceptance) do |t|
   t.pattern = 'spec/acceptance'
 end
 
-desc 'Run tests metadata_lint, lint, syntax, spec'
+desc 'Run tests metadata_lint, release_checks'
 task test: [
   :metadata_lint,
-  :lint,
-  :syntax,
-  :spec,
+  :release_checks,
 ]
 # vim: syntax=ruby

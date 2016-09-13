@@ -1,2 +1,24 @@
 .travis.yml:
   secure: "PdMTOaqZNzov5xJP0ltbYsybw++lSgiTxS8S/MtynQfljMm/EbeReuMbEhSuAjtro5gobNkJhD+EDkx5jnDCF5SgksWJ9TCP9DjDUtHe37aDkRyrWA5cAupUbGqFCquhYdSYTqRmvPZpwPxFKmmo/6ycLyM1CKT0SqTO2nVmCxM="
+  includes:
+  - rvm: 1.9.3
+    env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" FUTURE_PARSER="yes" CHECK=test
+  - rvm: 2.1.9
+    env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" FUTURE_PARSER="yes" CHECK=test
+  - rvm: 2.1.9
+    env: PUPPET_VERSION="~> 4.0" CHECK=test
+  - rvm: 2.2.5
+    env: PUPPET_VERSION="~> 4.0" CHECK=test
+  - rvm: 2.3.1
+    env: PUPPET_VERSION="~> 4.0" CHECK=build DEPLOY_TO_FORGE=yes
+  - rvm: 2.3.1
+    env: PUPPET_VERSION="~> 4.0" CHECK=rubocop
+  - rvm: 2.3.1
+    env: PUPPET_VERSION="~> 4.0" CHECK=test
+  - rvm: 2.4.0-preview1
+    env: PUPPET_VERSION="~> 4.0" CHECK=test
+Gemfile:
+  puppet_version: "~> 4.0"
+Rakefile:
+  extra_disabled_lint_checks:
+    - disable_relative_classname_inclusion # This is a Puppet 4.x only module. There is no such thing as a relative classname.
