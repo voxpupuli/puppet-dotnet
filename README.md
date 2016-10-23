@@ -1,5 +1,12 @@
 # Dotnet module for Puppet
 
+[![Build Status](https://travis-ci.org/voxpupuli/puppet-dotnet.png?branch=master)](https://travis-ci.org/voxpupuli/puppet-dotnet)
+[![Code Coverage](https://coveralls.io/repos/github/voxpupuli/puppet-dotnet/badge.svg?branch=master)](https://coveralls.io/github/voxpupuli/puppet-dotnet)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/dotnet.svg)](https://forge.puppetlabs.com/puppet/dotnet)
+[![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/puppet/dotnet.svg)](https://forge.puppetlabs.com/puppet/dotnet)
+[![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/puppet/dotnet.svg)](https://forge.puppetlabs.com/puppet/dotnet)
+[![Puppet Forge - scores](https://img.shields.io/puppetforge/f/puppet/dotnet.svg)](https://forge.puppetlabs.com/puppet/dotnet)
+
 #### Table of Contents
 
 1. [Overview](#overview)
