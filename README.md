@@ -1,6 +1,6 @@
-# puppet-dotnet
+# Dotnet module for Puppet
 
-####Table of Contents
+#### Table of Contents
 
 1. [Overview](#overview)
 2. [Module Description - What is the dotnet module?](#module-description)
@@ -13,7 +13,7 @@
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
-##Overview
+## Overview
 
 Puppet module for installing and managing [Microsoft .NET framework](http://www.microsoft.com/net).
 
@@ -21,17 +21,18 @@ Puppet module for installing and managing [Microsoft .NET framework](http://www.
 [![Puppet Forge](http://img.shields.io/puppetforge/v/puppet/dotnet.svg)](https://forge.puppet.com/puppet/dotnet)
 [![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/puppet/dotner.svg)](https://forge.puppetlabs.com/puppet/dotnet)
 
-##Module Description
+## Module Description
 
-This module installs and configures the Microsoft .NET framework on Windows systems. It support side-by-side installs where appropriate.
+This module installs and configures the Microsoft .NET framework on Windows
+systems. It support side-by-side installs where appropriate.
 
-##Setup
+## Setup
 
-###What dotnet affects
+### What dotnet affects
 
 * Installs the .net framework package or the windows server role.
 
-###Beginning with dotnet
+### Beginning with dotnet
 
 Installing the .net 3.5 server role on windows server:
 
@@ -48,34 +49,45 @@ Installing .net 4.5:
   }
 ```
 
-##Usage
+## Usage
 
-###Classes and Defined Types:
+### Classes and Defined Types
 
-####Defined Type: `dotnet`
-The dotnet module primary definition, `dotnet` install and configures the .net framework packages/roles
+#### Defined Type: `dotnet`
+
+The dotnet module primary definition, `dotnet` install and configures the .net
+framework packages/roles
 
 **Parameters within `dotnet`:**
-#####`ensure`
+##### `ensure`
 Ensures the state of .net on the system. Present or Absent.
 
-#####`version`
+##### `version`
+
 The version of .net that you want to be managed by this definition.
 
-#####`package_dir`
-If installing .NET from a directory or a mounted network location then this is that directory
+##### `package_dir`
 
-##Reference
+If installing .NET from a directory or a mounted network location then this is
+that directory
 
-###Definitions
-###Public Definitions
-* [`dotnet`](#define_dotnet): Guides the basic management of the .net framework on the system.
+## Reference
 
-###Private Definitions
-* [`dotnet::install::feature`](#define-install_feature): Installs dotnet as windows feature (.net 3.5)
-* [`dotnet::install::package`](#define-install_package): Installs dotnet from a downloaded package.
+### Definitions
 
-##Limitations
+### Public Definitions
+
+* [`dotnet`](#define_dotnet): Guides the basic management of the .net framework
+  on the system.
+
+### Private Definitions
+
+* [`dotnet::install::feature`](#define-install_feature): Installs dotnet as windows
+  feature (.net 3.5)
+* [`dotnet::install::package`](#define-install_package): Installs dotnet from a downloaded
+  package.
+
+## Limitations
 
 This module is tested on the following platforms:
 
@@ -83,8 +95,8 @@ This module is tested on the following platforms:
 
 It is tested with the OSS version of Puppet only.
 
-##Development
+## Development
 
-###Contributing
+### Contributing
 
 Please read CONTRIBUTING.md for full details on contributing to this project.
