@@ -13,7 +13,7 @@ describe 'dotnet', type: :define do
 
       it do
         expect do
-          should contain_exec('install-dotnet-3.5')
+          is_expected.to contain_exec('install-dotnet-3.5')
         end.to raise_error(Puppet::Error)
       end
     end
@@ -31,7 +31,7 @@ describe 'dotnet', type: :define do
 
       it do
         expect do
-          should contain_exec('install-dotnet-3.5')
+          is_expected.to contain_exec('install-dotnet-3.5')
         end.to raise_error(Puppet::Error)
       end
     end

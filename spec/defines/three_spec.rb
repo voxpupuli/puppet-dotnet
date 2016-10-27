@@ -25,7 +25,7 @@ describe 'dotnet', type: :define do
       end
 
       it do
-        should contain_exec('install-feature-3.5').with(
+        is_expected.to contain_exec('install-feature-3.5').with(
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => 'Import-Module ServerManager; Add-WindowsFeature as-net-framework',
@@ -50,7 +50,7 @@ describe 'dotnet', type: :define do
         }
       end
 
-      it { should_not contain_exec('install-feature-3.5') }
+      it { is_expected.not_to contain_exec('install-feature-3.5') }
     end
   end
 
@@ -70,7 +70,7 @@ describe 'dotnet', type: :define do
       end
 
       it do
-        should contain_exec('uninstall-feature-3.5').with(
+        is_expected.to contain_exec('uninstall-feature-3.5').with(
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => 'Import-Module ServerManager; Remove-WindowsFeature as-net-framework',
@@ -97,7 +97,7 @@ describe 'dotnet', type: :define do
       end
 
       it do
-        should contain_exec('install-dotnet-3.5').with(
+        is_expected.to contain_exec('install-dotnet-3.5').with(
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /q /norestart",
@@ -123,14 +123,14 @@ describe 'dotnet', type: :define do
       end
 
       it do
-        should contain_download_file('download-dotnet-3.5').with(
+        is_expected.to contain_download_file('download-dotnet-3.5').with(
           'url'                   => @three_url,
           'destination_directory' => 'C:\\Windows\\Temp'
         )
       end
 
       it do
-        should contain_exec('install-dotnet-3.5').with(
+        is_expected.to contain_exec('install-dotnet-3.5').with(
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /q /norestart",
@@ -156,7 +156,7 @@ describe 'dotnet', type: :define do
         }
       end
 
-      it { should_not contain_exec('install-dotnet-35') }
+      it { is_expected.not_to contain_exec('install-dotnet-35') }
     end
   end
 
@@ -177,7 +177,7 @@ describe 'dotnet', type: :define do
       end
 
       it do
-        should contain_exec('uninstall-dotnet-3.5').with(
+        is_expected.to contain_exec('uninstall-dotnet-3.5').with(
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /x /q /norestart",
@@ -203,13 +203,13 @@ describe 'dotnet', type: :define do
       end
 
       it do
-        should contain_file("C:/Windows/Temp/#{@three_prog}").with(
+        is_expected.to contain_file("C:/Windows/Temp/#{@three_prog}").with(
           'ensure' => 'absent'
         )
       end
 
       it do
-        should contain_exec('uninstall-dotnet-3.5').with(
+        is_expected.to contain_exec('uninstall-dotnet-3.5').with(
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /x /q /norestart",
@@ -235,7 +235,7 @@ describe 'dotnet', type: :define do
         }
       end
 
-      it { should_not contain_exec('uninstall-dotnet-3.5') }
+      it { is_expected.not_to contain_exec('uninstall-dotnet-3.5') }
     end
   end
 end

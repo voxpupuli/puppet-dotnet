@@ -26,7 +26,7 @@ describe 'dotnet', type: :define do
       end
 
       it do
-        should contain_exec('install-dotnet-4.0').with(
+        is_expected.to contain_exec('install-dotnet-4.0').with(
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@four_prog} /q /norestart",
@@ -52,14 +52,14 @@ describe 'dotnet', type: :define do
       end
 
       it do
-        should contain_download_file('download-dotnet-4.0').with(
+        is_expected.to contain_download_file('download-dotnet-4.0').with(
           'url'                   => @four_url,
           'destination_directory' => 'C:\\Windows\\Temp'
         )
       end
 
       it do
-        should contain_exec('install-dotnet-4.0').with(
+        is_expected.to contain_exec('install-dotnet-4.0').with(
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@four_prog} /q /norestart",
@@ -85,7 +85,7 @@ describe 'dotnet', type: :define do
         }
       end
 
-      it { should_not contain_exec('install-dotnet-4.0') }
+      it { is_expected.not_to contain_exec('install-dotnet-4.0') }
     end
   end
 
@@ -106,7 +106,7 @@ describe 'dotnet', type: :define do
       end
 
       it do
-        should contain_exec('uninstall-dotnet-4.0').with(
+        is_expected.to contain_exec('uninstall-dotnet-4.0').with(
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@four_prog} /x /q /norestart",
@@ -132,13 +132,13 @@ describe 'dotnet', type: :define do
       end
 
       it do
-        should contain_file("C:/Windows/Temp/#{@four_prog}").with(
+        is_expected.to contain_file("C:/Windows/Temp/#{@four_prog}").with(
           'ensure' => 'absent'
         )
       end
 
       it do
-        should contain_exec('uninstall-dotnet-4.0').with(
+        is_expected.to contain_exec('uninstall-dotnet-4.0').with(
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@four_prog} /x /q /norestart",
@@ -164,7 +164,7 @@ describe 'dotnet', type: :define do
         }
       end
 
-      it { should_not contain_exec('uninstall-dotnet-4.0') }
+      it { is_expected.not_to contain_exec('uninstall-dotnet-4.0') }
     end
   end
 end
