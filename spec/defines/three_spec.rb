@@ -50,7 +50,7 @@ describe 'dotnet', type: :define do
         }
       end
 
-      it { is_expected.to_not contain_exec('install-feature-3.5') }
+      it { is_expected.not_to contain_exec('install-feature-3.5') }
     end
   end
 
@@ -156,7 +156,7 @@ describe 'dotnet', type: :define do
         }
       end
 
-      it { is_expected.to_not contain_exec('install-dotnet-35') }
+      it { is_expected.not_to contain_exec('install-dotnet-35') }
     end
   end
 
@@ -235,7 +235,7 @@ describe 'dotnet', type: :define do
         }
       end
 
-      it { is_expected.to_not contain_exec('uninstall-dotnet-3.5') }
+      it { is_expected.not_to contain_exec('uninstall-dotnet-3.5') }
     end
   end
 end

@@ -85,7 +85,7 @@ describe 'dotnet', type: :define do
         }
       end
 
-      it { is_expected.to_not contain_exec('install-dotnet-4.5') }
+      it { is_expected.not_to contain_exec('install-dotnet-4.5') }
     end
   end
 
@@ -164,7 +164,7 @@ describe 'dotnet', type: :define do
         }
       end
 
-      it { is_expected.to_not contain_exec('uninstall-dotnet-4.5') }
+      it { is_expected.not_to contain_exec('uninstall-dotnet-4.5') }
     end
   end
 end
