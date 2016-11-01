@@ -28,19 +28,21 @@ define dotnet::install::package(
     $source_dir = $package_dir
   }
 
+  $installed = "if (Test-Path \'${key}\') { exit 0 } else { exit 1 }"
   if $ensure == 'present' {
     exec { "install-dotnet-${version}":
       command   => "& ${source_dir}\\${exe} /q /norestart",
       provider  => powershell,
       logoutput => true,
-      unless    => "if ((Get-Item -LiteralPath \'${key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 0 }",
+      unless    => $installed,
+      require   => Download_file["download-dotnet-${version}"],
     }
   } else {
     exec { "uninstall-dotnet-${version}":
       command   => "& ${source_dir}\\${exe} /x /q /norestart",
       provider  => powershell,
       logoutput => true,
-      unless    => "if ((Get-Item -LiteralPath \'${key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 1 }",
+      onlyif    => $installed,
     }
   }
 
