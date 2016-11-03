@@ -21,7 +21,8 @@ define dotnet::install::package(
       }
     } else {
       file { "C:/Windows/Temp/${exe}":
-        ensure => 'absent',
+        ensure  => 'absent',
+        require => Exec["uninstall-dotnet-${version}"],
       }
     }
   } else {
