@@ -1,12 +1,12 @@
 {
   "name":         "puppet-dotnet",
-  "version":      "1.0.2",
+  "version":      "1.1.0-rc0",
   "author":       "Vox Pupuli",
   "license":      "MIT",
-  "summary":      "'Module to manage the Microsoft .NET framework",
-  "source":       "https://github.com/puppet-community/puppet-dotnet",
-  "project_page": "https://github.com/puppet-community/puppet-dotnet",
-  "issues_url":   "https://github.com/puppet-community/puppet-dotnet/issues",
+  "summary":      "Module to manage the Microsoft .NET framework",
+  "source":       "https://github.com/voxpupuli/puppet-dotnet",
+  "project_page": "https://github.com/voxpupuli/puppet-dotnet",
+  "issues_url":   "https://github.com/voxpupuli/puppet-dotnet/issues",
   "operatingsystem_support": [
     {
       "operatingsystem": "windows",
@@ -20,7 +20,7 @@
     },
     {
       "name": "puppetlabs/powershell",
-      "version_requirement": ">= 1.0.0 <2.0.0"
+      "version_requirement": ">= 1.0.0 <3.0.0"
     },
     {
       "name": "liamjbennett/win_facts",
