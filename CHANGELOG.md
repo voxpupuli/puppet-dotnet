@@ -1,3 +1,13 @@
+# Changelog
+
+## 2017-02-11 Release 1.1.0
+
+This is the last release with Puppet3 support!
+
+* Fix wrong requirements in metadata.json
+* Sync metadata.json license to be same as LICENSE
+* Set min version_requirement for Puppet + deps
+
 ##2015-12-04 Release 1.0.2
 ###Summary
 
