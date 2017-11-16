@@ -31,13 +31,10 @@
 #    }
 #
 define dotnet(
-  $ensure  = 'present',
-  $version = '',
-  $package_dir = ''
+  Pattern[/^(3.5|4\.0|4\.5(\.\d)?)$/] $version,
+  Enum['present', 'absent'] $ensure = 'present',
+  $package_dir                      = ''
 ) {
-
-  validate_re($ensure,['^(present|absent)$'])
-  validate_re($version,['^(3.5|4\.0|4\.5(\.\d)?)$'])
 
   include ::dotnet::params
 
