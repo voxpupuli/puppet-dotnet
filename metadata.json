@@ -1,6 +1,6 @@
 {
   "name": "puppet-dotnet",
-  "version": "2.0.2-rc0",
+  "version": "2.0.2",
   "author": "Vox Pupuli",
   "license": "MIT",
   "summary": "'Module to manage the Microsoft .NET framework",
