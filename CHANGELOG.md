@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.0.2](https://github.com/voxpupuli/puppet-dotnet/tree/v2.0.2) (2018-10-19)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-dotnet/compare/v2.0.1...v2.0.2)
+
+**Merged pull requests:**
+
+- modulesync 2.1.0 and allow puppet 6.x [\#62](https://github.com/voxpupuli/puppet-dotnet/pull/62) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v2.0.1](https://github.com/voxpupuli/puppet-dotnet/tree/v2.0.1) (2018-09-06)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-dotnet/compare/v2.0.0...v2.0.1)
