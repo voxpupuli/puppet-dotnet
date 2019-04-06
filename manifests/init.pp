@@ -36,7 +36,7 @@ define dotnet(
   $package_dir                      = ''
 ) {
 
-  include ::dotnet::params
+  include dotnet::params
 
   case $version {
     '3.5': {
