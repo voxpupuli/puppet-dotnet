@@ -5,7 +5,7 @@ define dotnet::install::package(
   $package_dir = ''
 ) {
 
-  include ::dotnet::params
+  include dotnet::params
 
   $url = $dotnet::params::version[$version]['url']
   $exe = $dotnet::params::version[$version]['exe']
