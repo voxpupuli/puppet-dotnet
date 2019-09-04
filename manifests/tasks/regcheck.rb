@@ -3,7 +3,7 @@ require 'win32/registry'
 # Declare and initialize some local variables
 
 @dotnetversion = []
-versions = [] 
+versions = []
 keyname = 'SOFTWARE\Microsoft\NET Framework Setup\NDP'
 filterpattern = '^v'
 subkeyval = 'Version'
@@ -19,14 +19,14 @@ access = Win32::Registry::KEY_READ
 
 ###################################
 def regcheck(lockeyname, locaccess)
-    if !Win32::Registry::HKEY_LOCAL_MACHINE.open(lockeyname, locaccess).nil?
-      return Win32::Registry::HKEY_LOCAL_MACHINE.open(lockeyname, locaccess)
-    end
-  rescue Win32::Registry::Error => e
-    if e.code == 2
-      puts "Unable to find keyname: '#{lockeyname}' Are you sure it's correct?"
-      exit
-    end
+  unless Win32::Registry::HKEY_LOCAL_MACHINE.open(lockeyname, locaccess).nil?
+    return Win32::Registry::HKEY_LOCAL_MACHINE.open(lockeyname, locaccess)
+  end
+rescue Win32::Registry::Error => e
+  if e.code == 2
+    puts 'Unable to find keyname: ' << lockkeyname.to_s << ' Are you sure it is correct?'
+    exit
+  end
 end
 ###################################
 
@@ -52,20 +52,20 @@ versions.each_with_index do |num, i|
   puts  "'"
 end
 
-filteredversions = versions.grep(/#{filterpattern}/)
+filteredversions = versions.grep(%r{#{filterpattern}})
 puts 'Sanitizing list based on filterpattern: ' << filterpattern.to_s
 print filteredversions.size
-puts " " << verbosemsg1.to_s << keyname.to_s
+puts ' ' << verbosemsg1.to_s << keyname.to_s
 
 filteredversions.each_with_index do |num, i|
-  print "("
+  print '('
   print i + 1
-  print ") "
+  print ') '
   tempkeyname = keyname
-  tempkeyname += "\\"
+  tempkeyname += '\\'
   tempkeyname += num
   tempkeyname += "\\#{clientkey}"
-  puts "Getting .NET Version info for " << tempkeyname.to_s << "\\" << subkeyval.to_s
+  puts 'Getting .NET Version info for ' << tempkeyname.to_s << '\\' << subkeyval.to_s
   Win32::Registry::HKEY_LOCAL_MACHINE.open(tempkeyname, access) do |reg|
     @dotnetversion = reg[subkeyval.to_s, Win32::Registry::REG_SZ]
     puts "version='" << @dotnetversion << "'"
