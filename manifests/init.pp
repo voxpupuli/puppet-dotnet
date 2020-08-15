@@ -30,12 +30,11 @@
 #      version => '4.5',
 #    }
 #
-define dotnet(
+define dotnet (
   Pattern[/^(3.5|4\.0|4\.5(\.\d)?)$/] $version,
   Enum['present', 'absent'] $ensure = 'present',
   $package_dir                      = ''
 ) {
-
   include dotnet::params
 
   case $version {
@@ -75,7 +74,5 @@ define dotnet(
       version     => $version,
       package_dir => $package_dir,
     }
-  } else {
-
-  }
+  } else {}
 }

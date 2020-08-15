@@ -1,9 +1,8 @@
 #
-define dotnet::install::feature(
+define dotnet::install::feature (
   $ensure = 'present',
   $version = ''
 ) {
-
   if $ensure == 'present' {
     exec { "install-feature-${version}":
       command   => 'Import-Module ServerManager; Add-WindowsFeature as-net-framework',
@@ -19,5 +18,4 @@ define dotnet::install::feature(
       onlyif    => "Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v${version}",
     }
   }
-
 }

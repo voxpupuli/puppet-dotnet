@@ -1,16 +1,14 @@
 #
-define dotnet::install::package(
+define dotnet::install::package (
   $ensure = 'present',
   $version = '',
   $package_dir = ''
 ) {
-
   include dotnet::params
 
   $url = $dotnet::params::version[$version]['url']
   $exe = $dotnet::params::version[$version]['exe']
   $key = $dotnet::params::version[$version]['key']
-
 
   if "x${package_dir}x" == 'xx' {
     $source_dir = 'C:\Windows\Temp'
@@ -43,5 +41,4 @@ define dotnet::install::package(
       unless    => "if ((Get-Item -LiteralPath \'${key}\' -ErrorAction SilentlyContinue).GetValue(\'DisplayVersion\')) { exit 1 }",
     }
   }
-
 }

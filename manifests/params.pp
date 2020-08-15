@@ -8,7 +8,6 @@
 # It sets variables according to platform
 #
 class dotnet::params {
-
   $version = {
     '3.5' => {
       'url' => 'http://download.microsoft.com/download/7/0/3/703455ee-a747-4cc8-bd3e-98a615c3aedb/dotNetFx35setup.exe',
