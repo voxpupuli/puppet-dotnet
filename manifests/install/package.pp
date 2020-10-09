@@ -1,4 +1,7 @@
-#
+# @summary Installs dotnet from a downloaded package.
+# @param ensure Control the state of the .NET installation.
+# @param version The version of .NET to be managed.
+# @param package_dir If installing .NET from a directory or a mounted network location then this is that directory.
 define dotnet::install::package (
   $ensure = 'present',
   $version = '',

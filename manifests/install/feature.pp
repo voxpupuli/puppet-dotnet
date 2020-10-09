@@ -1,4 +1,6 @@
-#
+# @summary Installs dotnet as Windows feature (.net 3.5)
+# @param ensure Control the state of the .NET installation.
+# @param version The version of .NET to be managed.
 define dotnet::install::feature (
   $ensure = 'present',
   $version = ''
