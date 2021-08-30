@@ -39,20 +39,20 @@ define dotnet (
 
   case $version {
     '3.5': {
-      case $::operatingsystemversion {
+      case $facts['operatingsystemversion'] {
         /^Windows.Server.(2008|2012).?(R2)?.*/: { $type = 'feature' }
         /^Windows (XP|Vista|7|8|8.1).*/: { $type = 'package' }
         default: { $type = 'err' err("dotnet ${version} is not support on this version of windows") }
       }
     }
     '4.0': {
-      case $::operatingsystemversion {
+      case $facts['peratingsystemversion'] {
         /^Windows.(Server)?.?(2003|2008|2012|XP|Vista|7|8.*).?(R2)?.*/: { $type = 'package' }
         default: { $type = 'err' err("dotnet ${version} is not support on this version of windows") }
       }
     }
     /4\.5(\.\d)?/: {
-      case $::operatingsystemversion {
+      case $facts['operatingsystemversion'] {
         /^Windows.(Server)?.?(2008|2012|Vista|7|8.*).?(R2)?.*/: { $type = 'package' }
         default: { $type = 'err' err("dotnet ${version} is not support on this version of windows") }
       }
