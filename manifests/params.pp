@@ -1,12 +1,5 @@
-# Author::    Liam Bennett (mailto:liamjbennett@gmail.com)
-# Copyright:: Copyright (c) 2014 Liam Bennett
-# License::   MIT
-
-# == Class dotnet::params
-#
-# This class is meant to be called from `dotnet`
-# It sets variables according to platform
-#
+# @summary This class is meant to be called from `dotnet`. It sets variables according to platform.
+# @api private
 class dotnet::params {
   $version = {
     '3.5' => {
