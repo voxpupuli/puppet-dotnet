@@ -6,7 +6,12 @@
 
 ### Classes
 
-* [`dotnet::params`](#dotnetparams): This class is meant to be called from `dotnet`. It sets variables according to platform.
+#### Public Classes
+
+
+#### Private Classes
+
+* `dotnet::params`: This class is meant to be called from `dotnet`. It sets variables according to platform.
 
 ### Defined types
 
@@ -16,13 +21,9 @@
 
 ## Classes
 
-### `dotnet::params`
-
-This class is meant to be called from `dotnet`. It sets variables according to platform.
-
 ## Defined types
 
-### `dotnet`
+### <a name="dotnet"></a>`dotnet`
 
 Module to install the Microsoft .NET framework on Windows.
 
@@ -38,15 +39,19 @@ dotnet { 'dotnet45':
 
 #### Parameters
 
-The following parameters are available in the `dotnet` defined type.
+The following parameters are available in the `dotnet` defined type:
 
-##### `version`
+* [`version`](#version)
+* [`ensure`](#ensure)
+* [`package_dir`](#package_dir)
+
+##### <a name="version"></a>`version`
 
 Data type: `Pattern[/^(3.5|4\.0|4\.5(\.\d)?)$/]`
 
 The version of .NET to be managed.
 
-##### `ensure`
+##### <a name="ensure"></a>`ensure`
 
 Data type: `Enum['present', 'absent']`
 
@@ -54,7 +59,7 @@ Control the state of the .NET installation.
 
 Default value: `'present'`
 
-##### `package_dir`
+##### <a name="package_dir"></a>`package_dir`
 
 Data type: `Any`
 
@@ -62,15 +67,18 @@ If installing .NET from a directory or a mounted network location then this is t
 
 Default value: `''`
 
-### `dotnet::install::feature`
+### <a name="dotnetinstallfeature"></a>`dotnet::install::feature`
 
 Installs dotnet as Windows feature (.net 3.5)
 
 #### Parameters
 
-The following parameters are available in the `dotnet::install::feature` defined type.
+The following parameters are available in the `dotnet::install::feature` defined type:
 
-##### `ensure`
+* [`ensure`](#ensure)
+* [`version`](#version)
+
+##### <a name="ensure"></a>`ensure`
 
 Data type: `Any`
 
@@ -78,7 +86,7 @@ Control the state of the .NET installation.
 
 Default value: `'present'`
 
-##### `version`
+##### <a name="version"></a>`version`
 
 Data type: `Any`
 
@@ -86,15 +94,19 @@ The version of .NET to be managed.
 
 Default value: `''`
 
-### `dotnet::install::package`
+### <a name="dotnetinstallpackage"></a>`dotnet::install::package`
 
 Installs dotnet from a downloaded package.
 
 #### Parameters
 
-The following parameters are available in the `dotnet::install::package` defined type.
+The following parameters are available in the `dotnet::install::package` defined type:
 
-##### `ensure`
+* [`ensure`](#ensure)
+* [`version`](#version)
+* [`package_dir`](#package_dir)
+
+##### <a name="ensure"></a>`ensure`
 
 Data type: `Any`
 
@@ -102,7 +114,7 @@ Control the state of the .NET installation.
 
 Default value: `'present'`
 
-##### `version`
+##### <a name="version"></a>`version`
 
 Data type: `Any`
 
@@ -110,7 +122,7 @@ The version of .NET to be managed.
 
 Default value: `''`
 
-##### `package_dir`
+##### <a name="package_dir"></a>`package_dir`
 
 Data type: `Any`
 
