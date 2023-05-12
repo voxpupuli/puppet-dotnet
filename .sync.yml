@@ -1,5 +1,3 @@
-.travis.yml:
-  secure: "PdMTOaqZNzov5xJP0ltbYsybw++lSgiTxS8S/MtynQfljMm/EbeReuMbEhSuAjtro5gobNkJhD+EDkx5jnDCF5SgksWJ9TCP9DjDUtHe37aDkRyrWA5cAupUbGqFCquhYdSYTqRmvPZpwPxFKmmo/6ycLyM1CKT0SqTO2nVmCxM="
 Gemfile:
   optional:
     ':test':
