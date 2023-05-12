@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
-# rubocop:disable RSpec/InstanceVariable
 describe 'dotnet', type: :define do
   before do
     @hklm = 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall'
@@ -101,7 +102,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /q /norestart",
-          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' " + "-ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }"
+          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }"
         )
       end
     end
