@@ -1,6 +1,7 @@
+---
 fixtures:
   repositories:
-    stdlib:  https://github.com/puppetlabs/puppetlabs-stdlib
-    powershell:  https://github.com/puppetlabs/puppetlabs-powershell
-    win_facts:  https://github.com/liamjbennett/puppet-win_facts
     download_file: https://github.com/voxpupuli/puppet-download_file
+    powershell: https://github.com/puppetlabs/puppetlabs-powershell
+    stdlib: https://github.com/puppetlabs/puppetlabs-stdlib
+    win_facts: https://github.com/liamjbennett/puppet-win_facts
