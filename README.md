@@ -1,6 +1,6 @@
 # Dotnet module for Puppet
 
-[![Build Status](https://travis-ci.org/voxpupuli/puppet-dotnet.png?branch=master)](https://travis-ci.org/voxpupuli/puppet-dotnet)
+![Build Status](https://github.com/voxpupuli/puppet-dotnet/actions/workflows/ci.yml/badge.svg?branch=master)
 [![Code Coverage](https://coveralls.io/repos/github/voxpupuli/puppet-dotnet/badge.svg?branch=master)](https://coveralls.io/github/voxpupuli/puppet-dotnet)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/dotnet.svg)](https://forge.puppetlabs.com/puppet/dotnet)
 [![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/puppet/dotnet.svg)](https://forge.puppetlabs.com/puppet/dotnet)
@@ -24,7 +24,7 @@
 
 Puppet module for installing and managing [Microsoft .NET framework](http://www.microsoft.com/net).
 
-[![Build Status](https://travis-ci.org/voxpupuli/puppet-dotnet.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-dotnet)
+![Build Status](https://github.com/voxpupuli/puppet-dotnet/actions/workflows/ci.yml/badge.svg?branch=master)
 [![Puppet Forge](http://img.shields.io/puppetforge/v/puppet/dotnet.svg)](https://forge.puppet.com/puppet/dotnet)
 [![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/puppet/dotner.svg)](https://forge.puppetlabs.com/puppet/dotnet)
 
