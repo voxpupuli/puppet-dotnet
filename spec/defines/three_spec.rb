@@ -16,12 +16,12 @@ describe 'dotnet', type: :define do
       let(:params) do
         {
           ensure: 'present',
-          version: '3.5'
+          version: '3.5',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
@@ -30,7 +30,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => 'Import-Module ServerManager; Add-WindowsFeature as-net-framework',
-          'unless'    => 'Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v3.5'
+          'unless'    => 'Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v3.5',
         )
       end
     end
@@ -42,12 +42,12 @@ describe 'dotnet', type: :define do
       let(:params) do
         {
           ensure: 'present',
-          version: '3.5'
+          version: '3.5',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
@@ -61,12 +61,12 @@ describe 'dotnet', type: :define do
       let(:params) do
         {
           ensure: 'absent',
-          version: '3.5'
+          version: '3.5',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
@@ -75,7 +75,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => 'Import-Module ServerManager; Remove-WindowsFeature as-net-framework',
-          'onlyif'    => 'Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v3.5'
+          'onlyif'    => 'Test-Path C:\\Windows\\Microsoft.NET\\Framework\\v3.5',
         )
       end
     end
@@ -88,12 +88,12 @@ describe 'dotnet', type: :define do
         {
           ensure: 'present',
           version: '3.5',
-          package_dir: 'C:\\Windows\\Temp'
+          package_dir: 'C:\\Windows\\Temp',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
@@ -102,7 +102,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /q /norestart",
-          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }"
+          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }",
         )
       end
     end
@@ -114,19 +114,19 @@ describe 'dotnet', type: :define do
       let(:params) do
         {
           ensure: 'present',
-          version: '3.5'
+          version: '3.5',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
       it do
         is_expected.to contain_download_file('download-dotnet-3.5').with(
           'url'                   => @three_url,
-          'destination_directory' => 'C:\\Windows\\Temp'
+          'destination_directory' => 'C:\\Windows\\Temp',
         )
       end
 
@@ -135,7 +135,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /q /norestart",
-          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }"
+          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }",
         )
       end
     end
@@ -148,12 +148,12 @@ describe 'dotnet', type: :define do
         {
           ensure: 'present',
           version: '3.5',
-          package_dir: 'C:\\Windows\\Temp'
+          package_dir: 'C:\\Windows\\Temp',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
@@ -168,12 +168,12 @@ describe 'dotnet', type: :define do
         {
           ensure: 'absent',
           version: '3.5',
-          package_dir: 'C:\\Windows\\Temp'
+          package_dir: 'C:\\Windows\\Temp',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
@@ -182,7 +182,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /x /q /norestart",
-          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }"
+          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }",
         )
       end
     end
@@ -194,18 +194,18 @@ describe 'dotnet', type: :define do
       let(:params) do
         {
           ensure: 'absent',
-          version: '3.5'
+          version: '3.5',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
       it do
         is_expected.to contain_file("C:/Windows/Temp/#{@three_prog}").with(
-          'ensure' => 'absent'
+          'ensure' => 'absent',
         )
       end
 
@@ -214,7 +214,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@three_prog} /x /q /norestart",
-          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }"
+          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@three_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }",
         )
       end
     end
@@ -227,12 +227,12 @@ describe 'dotnet', type: :define do
         {
           ensure: 'absent',
           version: '3.5',
-          package_dir: 'C:\\Windows\\Temp'
+          package_dir: 'C:\\Windows\\Temp',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 

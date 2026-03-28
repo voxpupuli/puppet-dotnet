@@ -17,12 +17,12 @@ describe 'dotnet', type: :define do
         {
           ensure: 'present',
           version: '4.5',
-          package_dir: 'C:\\Windows\\Temp'
+          package_dir: 'C:\\Windows\\Temp',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
@@ -31,7 +31,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@four_five_prog} /q /norestart",
-          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_five_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }"
+          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_five_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }",
         )
       end
     end
@@ -43,19 +43,19 @@ describe 'dotnet', type: :define do
       let(:params) do
         {
           ensure: 'present',
-          version: '4.5'
+          version: '4.5',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
       it do
         is_expected.to contain_download_file('download-dotnet-4.5').with(
           'url'                   => @four_five_url,
-          'destination_directory' => 'C:\\Windows\\Temp'
+          'destination_directory' => 'C:\\Windows\\Temp',
         )
       end
 
@@ -64,7 +64,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@four_five_prog} /q /norestart",
-          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_five_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }"
+          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_five_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 0 }",
         )
       end
     end
@@ -77,12 +77,12 @@ describe 'dotnet', type: :define do
         {
           ensure: 'present',
           version: '4.5',
-          package_dir: 'C:\\Windows\\Temp'
+          package_dir: 'C:\\Windows\\Temp',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
@@ -97,12 +97,12 @@ describe 'dotnet', type: :define do
         {
           ensure: 'absent',
           version: '4.5',
-          package_dir: 'C:\\Windows\\Temp'
+          package_dir: 'C:\\Windows\\Temp',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
@@ -111,7 +111,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@four_five_prog} /x /q /norestart",
-          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_five_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }"
+          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_five_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }",
         )
       end
     end
@@ -123,18 +123,18 @@ describe 'dotnet', type: :define do
       let(:params) do
         {
           ensure: 'absent',
-          version: '4.5'
+          version: '4.5',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
       it do
         is_expected.to contain_file("C:/Windows/Temp/#{@four_five_prog}").with(
-          'ensure' => 'absent'
+          'ensure' => 'absent',
         )
       end
 
@@ -143,7 +143,7 @@ describe 'dotnet', type: :define do
           'provider'  => 'powershell',
           'logoutput' => 'true',
           'command'   => "& C:\\Windows\\Temp\\#{@four_five_prog} /x /q /norestart",
-          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_five_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }"
+          'unless'    => "if ((Get-Item -LiteralPath '#{@hklm}\\#{@four_five_reg}' -ErrorAction SilentlyContinue).GetValue('DisplayVersion')) { exit 1 }",
         )
       end
     end
@@ -156,12 +156,12 @@ describe 'dotnet', type: :define do
         {
           ensure: 'absent',
           version: '4.5',
-          package_dir: 'C:\\Windows\\Temp'
+          package_dir: 'C:\\Windows\\Temp',
         }
       end
       let(:facts) do
         {
-          operatingsystemversion: os
+          operatingsystemversion: os,
         }
       end
 
