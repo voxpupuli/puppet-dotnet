@@ -124,4 +124,3 @@ Data type: `Any`
 If installing .NET from a directory or a mounted network location then this is that directory.
 
 Default value: `''`
-
